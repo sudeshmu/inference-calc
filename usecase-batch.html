@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Primary Meta Tags -->
+    <title>Batch Processing AI Cost Calculator - High Volume AI Processing 2026</title>
+    <meta name="description" content="Calculate costs for batch AI processing applications. Compare self-hosted GPUs vs managed models for data analysis, content generation, and large-scale AI workloads.">
+    <meta name="keywords" content="batch AI processing cost, bulk AI inference, high volume AI pricing, data processing AI cost, content generation AI pricing">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Batch Processing AI Cost Calculator">
+    <meta property="og:description" content="Calculate costs for batch AI processing and high-volume data analysis applications.">
+    <meta property="og:url" content="https://inference-calc.web.app/usecase-batch.html">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen">
+
+    <!-- Header -->
+    <header class="border-b border-red-200 bg-gradient-to-r from-red-600 to-red-700 shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-bold text-white">
+                        <a href="index.html" class="hover:text-red-100">AI Inference Cost Calculator</a>
+                    </h1>
+                    <p class="text-xs text-red-100 mt-1">Batch Processing & High Volume</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors">← Calculator</a>
+                    <a href="help.html" class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors">Help</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <div class="text-6xl mb-4">📊</div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">Batch Processing AI Applications</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Processing large volumes of data with AI? Find the most cost-effective approach for batch jobs, data analysis, and high-throughput AI workloads.
+            </p>
+        </div>
+
+        <!-- Key Characteristics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-lg p-6 text-center">
+                <div class="text-2xl font-bold text-blue-700">High Volume</div>
+                <div class="text-sm text-blue-600">Millions of requests</div>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-300 rounded-lg p-6 text-center">
+                <div class="text-2xl font-bold text-green-700">Non-urgent</div>
+                <div class="text-sm text-green-600">Minutes-hours acceptable</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-300 rounded-lg p-6 text-center">
+                <div class="text-2xl font-bold text-purple-700">Cost-sensitive</div>
+                <div class="text-sm text-purple-600">Per-unit efficiency matters</div>
+            </div>
+        </div>
+
+        <!-- Volume-based Recommendations -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Choose by Processing Volume</h2>
+
+            <!-- Small to Medium Batch -->
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-300 rounded-lg p-8 mb-6">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">📋</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-orange-700 mb-4">Small-Medium Batch (1K-100K/day)</h3>
+                        <p class="text-gray-700 mb-4">
+                            For moderate volumes, managed models offer excellent value with no infrastructure overhead and pay-per-use pricing.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-lg border border-orange-200">
+                                <h4 class="font-semibold text-orange-600 mb-2">✅ Recommended</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• <strong>AWS Bedrock</strong> - Batch-optimized</li>
+                                    <li>• <strong>Azure OpenAI</strong> - Provisioned throughput</li>
+                                    <li>• <strong>Vertex AI</strong> - Batch prediction API</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-orange-200">
+                                <h4 class="font-semibold text-orange-600 mb-2">💰 Cost Range</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• 10K/day: $300-500/month</li>
+                                    <li>• 50K/day: $1.5-3K/month</li>
+                                    <li>• 100K/day: $3-6K/month</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Large Batch -->
+            <div class="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-300 rounded-lg p-8">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">🏭</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-red-700 mb-4">Large Batch (100K+ daily): Self-Hosted GPUs</h3>
+                        <p class="text-gray-700 mb-4">
+                            At high volumes, self-hosted GPU infrastructure becomes cost-effective. Lower per-unit costs but requires upfront investment.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-lg border border-red-200">
+                                <h4 class="font-semibold text-red-600 mb-2">🎯 Break-even Analysis</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• 500K/day: Break-even point</li>
+                                    <li>• 1M/day: 40% savings vs SaaS</li>
+                                    <li>• 5M/day: 60% savings vs SaaS</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-red-200">
+                                <h4 class="font-semibold text-red-600 mb-2">⚠️ Considerations</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• 3-6 month setup time</li>
+                                    <li>• Minimum $50K monthly commitment</li>
+                                    <li>• Requires ML engineering team</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Batch Processing Use Cases -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Common Batch AI Applications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Content Generation -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-xl">✍️</div>
+                        <div>
+                            <h3 class="font-semibold">Content Generation</h3>
+                            <p class="text-sm text-gray-600">Blog posts, product descriptions</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>Typical Volume:</span>
+                            <span className="font-medium">1K-50K articles/day</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Best Approach:</span>
+                            <span className="font-medium">Managed Models</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Cost per article:</span>
+                            <span className="font-medium text-green-600">$0.05-0.20</span>
+                        </div>
+                        <div class="bg-purple-50 p-3 rounded text-xs">
+                            <strong>Optimization:</strong> Use Claude 3 Haiku for short content, GPT-4 for premium content
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Analysis -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">📈</div>
+                        <div>
+                            <h3 class="font-semibold">Data Analysis</h3>
+                            <p class="text-sm text-gray-600">Document processing, insights</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>Typical Volume:</span>
+                            <span className="font-medium">10K-500K docs/day</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Best Approach:</span>
+                            <span className="font-medium">Self-hosted at scale</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Cost per document:</span>
+                            <span className="font-medium text-green-600">$0.01-0.10</span>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded text-xs">
+                            <strong>Optimization:</strong> Parallel processing, custom fine-tuned models
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email/Support Automation -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-xl">📧</div>
+                        <div>
+                            <h3 class="font-semibold">Email Automation</h3>
+                            <p class="text-sm text-gray-600">Response generation, classification</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>Typical Volume:</span>
+                            <span className="font-medium">5K-100K emails/day</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Best Approach:</span>
+                            <span className="font-medium">Managed Models</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Cost per email:</span>
+                            <span className="font-medium text-green-600">$0.02-0.05</span>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded text-xs">
+                            <strong>Optimization:</strong> Template-based responses, priority queues
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image Processing -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-xl">🖼️</div>
+                        <div>
+                            <h3 class="font-semibold">Image Processing</h3>
+                            <p class="text-sm text-gray-600">Tagging, description, analysis</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>Typical Volume:</span>
+                            <span className="font-medium">1K-100K images/day</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Best Approach:</span>
+                            <span className="font-medium">Vision-specific APIs</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Cost per image:</span>
+                            <span className="font-medium text-green-600">$0.001-0.02</span>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded text-xs">
+                            <strong>Optimization:</strong> Batch API calls, image compression, caching
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cost Comparison -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Batch Processing Cost Analysis (500K requests/day)</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- SaaS APIs -->
+                <div class="bg-red-50 border-2 border-red-300 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🔴</span>
+                        <h3 class="text-lg font-bold text-red-700">SaaS APIs</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm">OpenAI API</span>
+                            <span class="font-semibold text-red-700">$25,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Claude API</span>
+                            <span class="font-semibold text-red-700">$20,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">No infrastructure</span>
+                            <span class="font-semibold text-red-700">$0</span>
+                        </div>
+                        <hr class="border-red-200">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span class="text-red-700">$20-25K/mo</span>
+                        </div>
+                        <div class="text-xs space-y-1 mt-3">
+                            <div class="text-green-600">✅ Zero setup time</div>
+                            <div class="text-red-600">❌ Highest per-unit cost</div>
+                            <div class="text-yellow-600">⚠️ Rate limiting issues</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Managed Models -->
+                <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🟠</span>
+                        <h3 class="text-lg font-bold text-orange-700">Managed Models</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm">AWS Bedrock (bulk)</span>
+                            <span class="font-semibold text-orange-700">$15,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Management overhead</span>
+                            <span class="font-semibold text-orange-700">$2,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Infrastructure</span>
+                            <span class="font-semibold text-orange-700">$500/mo</span>
+                        </div>
+                        <hr class="border-orange-200">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span class="text-orange-700">$17.5K/mo</span>
+                        </div>
+                        <div class="text-xs space-y-1 mt-3">
+                            <div class="text-green-600">✅ Batch optimizations</div>
+                            <div class="text-green-600">✅ Enterprise features</div>
+                            <div class="text-yellow-600">⚠️ Some setup required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Self-Hosted -->
+                <div class="bg-green-50 border-2 border-green-300 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🟢</span>
+                        <h3 class="text-lg font-bold text-green-700">Self-Hosted GPU</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm">GPU cluster (8x A100)</span>
+                            <span class="font-semibold text-green-700">$8,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Engineering team</span>
+                            <span class="font-semibold text-green-700">$6,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Infrastructure</span>
+                            <span class="font-semibold text-green-700">$1,500/mo</span>
+                        </div>
+                        <hr class="border-green-200">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span class="text-green-700">$15.5K/mo</span>
+                        </div>
+                        <div class="text-xs space-y-1 mt-3">
+                            <div class="text-green-600">✅ Lowest per-unit cost</div>
+                            <div class="text-green-600">✅ Full customization</div>
+                            <div class="text-yellow-600">⚠️ 6-month setup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optimization Strategies -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Batch Processing Optimization</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-blue-700 mb-4">🚀 Performance Optimizations</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            <span><strong>Parallel processing:</strong> Split work across multiple workers</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            <span><strong>Batch API calls:</strong> Group requests when possible</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            <span><strong>Queue management:</strong> Priority-based processing</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-500 font-bold">•</span>
+                            <span><strong>Retry logic:</strong> Handle failures gracefully</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 border-2 border-green-300 rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-green-700 mb-4">💰 Cost Optimizations</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 font-bold">•</span>
+                            <span><strong>Off-peak processing:</strong> Schedule during cheaper hours</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 font-bold">•</span>
+                            <span><strong>Model selection:</strong> Use cheapest model that meets quality needs</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 font-bold">•</span>
+                            <span><strong>Input optimization:</strong> Minimize token usage</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-green-500 font-bold">•</span>
+                            <span><strong>Caching results:</strong> Avoid reprocessing duplicate inputs</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Timeline -->
+        <div class="mb-12 bg-gray-50 rounded-lg p-6">
+            <h2 class="text-xl font-bold text-gray-900 mb-6">Batch Processing Implementation Roadmap</h2>
+            <div class="space-y-4">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-sm font-bold text-green-600">1</div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Week 1: Start with Managed APIs</h3>
+                        <p class="text-gray-700 text-sm">Begin with AWS Bedrock or Azure OpenAI batch APIs to validate your pipeline and measure actual costs.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-sm font-bold text-blue-600">2</div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Month 1: Optimize Pipeline</h3>
+                        <p class="text-gray-700 text-sm">Implement parallel processing, caching, and retry logic. Measure throughput and cost per unit.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-sm font-bold text-purple-600">3</div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Month 3: Scale Decision</h3>
+                        <p class="text-gray-700 text-sm">If processing 500K+ daily, evaluate self-hosted infrastructure. Otherwise, continue optimizing managed solution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Section -->
+        <div class="bg-gradient-to-br from-red-600 to-red-700 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Calculate Batch Processing Costs</h2>
+            <p class="mb-6 text-red-100">
+                Get cost projections optimized for high-volume, batch processing workloads.
+            </p>
+            <div class="space-x-4">
+                <a href="index.html?preset=batch" class="inline-block px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-red-50 transition-colors">
+                    Calculate Batch Costs
+                </a>
+                <a href="usecase-cost-sensitive.html" class="inline-block px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+                    Cost-Sensitive →
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 py-6 text-center text-xs text-gray-600">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="mb-2">
+                For feedback or questions, email us at
+                <a href="mailto:sushild76@gmail.com" class="text-red-600 hover:text-red-700 underline">sushild76@gmail.com</a>
+            </p>
+            <p>© 2026 AI Cost Calculator - <a href="index.html" class="hover:text-red-600">Calculate Your AI Costs</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

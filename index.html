@@ -1,0 +1,3493 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Primary Meta Tags -->
+    <title>AI Inference Cost Calculator - Compare SaaS APIs, Managed Models & Raw GPUs | 2026</title>
+    <meta name="title" content="AI Inference Cost Calculator - Compare SaaS APIs, Managed Models & Raw GPUs | 2026">
+    <meta name="description" content="Free AI inference cost calculator to compare OpenAI, Anthropic, AWS Bedrock, Google Vertex AI, Azure OpenAI vs self-hosted GPU costs. Get accurate pricing for your AI workloads with growth projections.">
+    <meta name="keywords" content="AI inference cost calculator, OpenAI pricing, Anthropic Claude cost, AWS Bedrock pricing, Azure OpenAI cost, GPU cost comparison, LLM pricing calculator, AI model cost estimator, machine learning inference pricing">
+    <meta name="author" content="AI Cost Calculator">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inference-calc.web.app/">
+    <meta property="og:title" content="AI Inference Cost Calculator - Compare SaaS APIs, Managed Models & Raw GPUs">
+    <meta property="og:description" content="Free AI inference cost calculator to compare OpenAI, Anthropic, AWS Bedrock vs self-hosted GPU costs. Get accurate pricing for your AI workloads.">
+    <meta property="og:image" content="https://inference-calc.web.app/preview.png">
+    <meta property="og:site_name" content="AI Cost Calculator">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://inference-calc.web.app/">
+    <meta property="twitter:title" content="AI Inference Cost Calculator - Compare SaaS APIs, Managed Models & Raw GPUs">
+    <meta property="twitter:description" content="Free AI inference cost calculator to compare OpenAI, Anthropic, AWS Bedrock vs self-hosted GPU costs. Get accurate pricing for your AI workloads.">
+    <meta property="twitter:image" content="https://inference-calc.web.app/preview.png">
+    <meta property="twitter:creator" content="@aicalculator">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://inference-calc.web.app/">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iI2RjMjYyNiIvPgo8cGF0aCBkPSJNOCAyNEgyNFYyMkg4VjI0WiIgZmlsbD0id2hpdGUiLz4KPHA+aCBkPSJNOCAyMEgyNFYxOEg4VjIwWiIgZmlsbD0id2hpdGUiLz4KPHA+aCBkPSJNOCAxNkgyNFYxNEg4VjE2WiIgZmlsbD0id2hpdGUiLz4KPHA+aCBkPSJNMTAgMTJMMTQgOEwyMiA4TDI2IDEyTDIyIDE2TDE0IDE2TDEwIDEyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "AI Inference Cost Calculator",
+        "description": "Free calculator to compare AI inference costs across SaaS APIs (OpenAI, Anthropic), managed models (AWS Bedrock, Azure), and self-hosted GPU deployments.",
+        "url": "https://inference-calc.web.app/",
+        "applicationCategory": "CalculatorApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "AI Cost Calculator"
+        },
+        "keywords": ["AI inference", "cost calculator", "OpenAI pricing", "Anthropic Claude", "AWS Bedrock", "GPU cost comparison"],
+        "featureList": [
+            "Compare SaaS API pricing (OpenAI, Anthropic, Google)",
+            "Managed model costs (AWS Bedrock, Azure OpenAI, Google Vertex AI)",
+            "Self-hosted GPU deployment costs",
+            "Multi-year cost projections with growth modeling",
+            "HIPAA compliance filtering",
+            "Engineering cost estimation",
+            "High availability and monitoring costs"
+        ],
+        "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+    <!-- Performance Optimization -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+    <!-- Core Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+        }
+        .step-indicator.completed {
+            background: #dc2626;
+            color: white;
+        }
+
+        .wizard-card {
+            min-height: 400px;
+            transition: all 0.4s ease;
+        }
+
+        .option-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            border-color: #dc2626;
+            transform: translateY(-2px);
+        }
+        .option-card.selected {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.15);
+        }
+
+        .slide-in {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .toggle-switch {
+            position: relative; width: 40px; height: 20px;
+            background: #475569; border-radius: 10px; cursor: pointer;
+            transition: background 0.2s; flex-shrink: 0;
+        }
+        .toggle-switch.active { background: #dc2626; }
+        .toggle-switch::after {
+            content: ''; position: absolute; top: 2px; left: 2px;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: white; transition: transform 0.2s;
+        }
+        .toggle-switch.active::after { transform: translateX(20px); }
+
+        /* Time Period Slider Styling */
+        .slider {
+            background: linear-gradient(to right, #b91c1c, #dc2626);
+            outline: none;
+            border-radius: 5px;
+        }
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: 2px solid #dc2626;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            border: 2px solid #dc2626;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: {
+                colors: {
+                    saas: { light: '#93c5fd', DEFAULT: '#3b82f6', dark: '#1d4ed8' },
+                    managed: { light: '#67e8f9', DEFAULT: '#06b6d4', dark: '#0891b2' },
+                    selfhost: { light: '#7dd3fc', DEFAULT: '#0ea5e9', dark: '#0369a1' },
+                }
+            }}
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-900 min-h-screen">
+
+    <!-- SEO Content (Hidden from visual display but visible to search engines) -->
+    <div class="sr-only">
+        <h1>AI Inference Cost Calculator - Compare OpenAI, Anthropic, AWS Bedrock, Azure OpenAI, and Self-Hosted GPU Costs</h1>
+        <p>Free comprehensive AI inference cost calculator to compare pricing across major AI providers including OpenAI GPT-4, Anthropic Claude, AWS Bedrock, Google Vertex AI, Azure OpenAI Service, and self-hosted GPU deployments. Calculate costs for different token volumes, growth projections, and deployment scenarios with real-time 2026 pricing data.</p>
+
+        <h2>Supported AI Providers and Models</h2>
+        <ul>
+            <li>OpenAI: GPT-4 Turbo, GPT-4o, GPT-3.5 Turbo pricing calculator</li>
+            <li>Anthropic: Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku cost comparison</li>
+            <li>AWS Bedrock: Claude, Titan, Llama pricing estimator</li>
+            <li>Google Vertex AI: Gemini Pro, PaLM model cost calculator</li>
+            <li>Azure OpenAI: GPT-4, GPT-3.5 pricing comparison</li>
+            <li>Self-hosted GPU: AWS EC2, Google Cloud, Azure, Lambda Labs cost analysis</li>
+        </ul>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li>Real-time AI inference cost comparison across 50+ models</li>
+            <li>Multi-year cost projections with traffic growth modeling</li>
+            <li>HIPAA compliance filtering for healthcare AI applications</li>
+            <li>GPU deployment cost analysis with commitment discounts</li>
+            <li>Engineering and operational overhead calculations</li>
+            <li>High availability and monitoring stack cost estimation</li>
+            <li>Token-based pricing calculator for accurate cost forecasting</li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="border-b border-red-200 bg-gradient-to-r from-red-600 to-red-700 shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-bold text-white">
+                        AI Inference Cost Calculator
+                    </h1>
+                    <p class="text-xs text-red-100 mt-1">Compare AI inference costs across deployment options</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="relative group">
+                        <button class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors flex items-center gap-1">
+                            Use Cases
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="p-2">
+                                <h3 class="text-xs font-semibold text-gray-700 mb-2">Choose Your Scenario</h3>
+                                <div class="space-y-1">
+                                    <a href="usecase-startup.html" class="block px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 rounded">
+                                        🚀 Startup/MVP
+                                    </a>
+                                    <a href="usecase-enterprise.html" class="block px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 rounded">
+                                        🏢 Enterprise Scale
+                                    </a>
+                                    <a href="usecase-healthcare.html" class="block px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 rounded">
+                                        🏥 Healthcare (HIPAA)
+                                    </a>
+                                    <a href="usecase-realtime.html" class="block px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 rounded">
+                                        ⚡ Real-time Apps
+                                    </a>
+                                    <a href="usecase-batch.html" class="block px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 rounded">
+                                        📊 Batch Processing
+                                    </a>
+                                    <a href="usecase-cost-sensitive.html" class="block px-2 py-1.5 text-xs text-gray-700 hover:bg-gray-100 rounded">
+                                        💰 Cost-Sensitive
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="comparison.html" class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors">Compare</a>
+                    <a href="help.html" class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors">Help</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6">
+
+        <!-- Progress Steps -->
+        <div class="flex items-center justify-center mb-8">
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <div id="step1" class="step-indicator active w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold bg-gray-300 text-gray-600">1</div>
+                <div class="w-8 h-0.5 bg-gray-300"></div>
+                <div id="step2" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold bg-gray-300 text-gray-600">2</div>
+                <div class="w-8 h-0.5 bg-gray-300"></div>
+                <div id="step3" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold bg-gray-300 text-gray-600">3</div>
+                <div class="w-8 h-0.5 bg-gray-300"></div>
+                <div id="step4" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold bg-gray-300 text-gray-600">4</div>
+                <div class="w-8 h-0.5 bg-gray-300"></div>
+                <div id="step5" class="step-indicator w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold bg-gray-300 text-gray-600">5</div>
+            </div>
+        </div>
+
+        <!-- Step Content -->
+        <div class="wizard-card bg-white rounded-xl border border-gray-200 shadow-lg p-6 sm:p-8">
+
+            <!-- Step 1: Time Period Selection -->
+            <div id="stepContent1" class="slide-in">
+                <div class="text-center mb-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Analysis Time Period</h2>
+                    <p class="text-sm text-gray-600">How many months would you like to project costs?</p>
+                </div>
+
+                <div class="max-w-lg mx-auto">
+                    <div class="bg-red-50 rounded-lg p-6 border border-red-200">
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-bold text-red-600 mb-2">
+                                <span id="timePeriodMonths">36</span> <span class="text-lg">months</span>
+                            </div>
+                            <div id="timePeriodDisplay" class="text-lg text-gray-700 font-medium">3 years</div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <input type="range" id="timePeriod" value="36" min="6" max="108" step="6"
+                                class="w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer slider">
+
+                            <div class="flex justify-between text-xs text-gray-600">
+                                <span>6 months</span>
+                                <span>2 years</span>
+                                <span>5 years</span>
+                                <span>9 years</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 text-center">
+                            <p class="text-xs text-gray-600">
+                                Longer periods help evaluate break-even points for self-hosted infrastructure
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end mt-8">
+                    <button onclick="nextStep()" class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm font-medium transition-colors">
+                        Next →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Scenario Selection -->
+            <div id="stepContent2" class="slide-in hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Choose Your Use Case</h2>
+                    <p class="text-sm text-gray-600">Select a scenario that matches your application, or choose custom for manual setup</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                    <div class="option-card border-2 border-gray-300 rounded-lg p-4 text-center" onclick="selectScenario('support')">
+                        <h3 class="font-semibold text-gray-800 mb-1">Customer Support</h3>
+                        <p class="text-xs text-gray-600">High-volume chatbot with short responses</p>
+                        <p class="text-xs text-red-600 mt-2">~15k req/day</p>
+                    </div>
+
+                    <div class="option-card border-2 border-gray-300 rounded-lg p-4 text-center" onclick="selectScenario('rag')">
+                        <h3 class="font-semibold text-gray-800 mb-1">RAG Pipeline</h3>
+                        <p class="text-xs text-gray-600">Document search with large context windows</p>
+                        <p class="text-xs text-red-600 mt-2">~5k req/day</p>
+                    </div>
+
+                    <div class="option-card border-2 border-gray-300 rounded-lg p-4 text-center" onclick="selectScenario('code')">
+                        <h3 class="font-semibold text-gray-800 mb-1">Code Assistant</h3>
+                        <p class="text-xs text-gray-600">Developer tool with heavy code generation</p>
+                        <p class="text-xs text-red-600 mt-2">~3k req/day</p>
+                    </div>
+
+                    <div class="option-card border-2 border-gray-300 rounded-lg p-4 text-center" onclick="selectScenario('summarize')">
+                        <h3 class="font-semibold text-gray-800 mb-1">Summarization</h3>
+                        <p class="text-xs text-gray-600">Process large documents with detailed summaries</p>
+                        <p class="text-xs text-red-600 mt-2">~1k req/day</p>
+                    </div>
+
+                    <div class="option-card border-2 border-gray-300 rounded-lg p-4 text-center" onclick="selectScenario('healthcare')">
+                        <h3 class="font-semibold text-gray-800 mb-1">Healthcare</h3>
+                        <p class="text-xs text-gray-600">HIPAA-compliant, privacy-first deployment</p>
+                        <p class="text-xs text-red-600 mt-2">~8k req/day</p>
+                    </div>
+
+                    <div class="option-card border-2 border-gray-300 rounded-lg p-4 text-center" onclick="selectScenario('custom')">
+                        <h3 class="font-semibold text-gray-800 mb-1">Custom Setup</h3>
+                        <p class="text-xs text-gray-600">Configure your own traffic and requirements</p>
+                        <p class="text-xs text-red-600 mt-2">Manual config</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button id="step2Next" onclick="nextStep()" disabled class="px-6 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded text-sm font-medium transition-colors">
+                        Next →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Traffic Details -->
+            <div id="stepContent3" class="slide-in hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Traffic & Usage</h2>
+                    <p class="text-sm text-gray-600">Configure your application's traffic patterns and token usage</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Daily Requests</label>
+                                <input type="number" id="dailyRequests" value="10000" min="0" step="1000"
+                                    class="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                <p class="text-xs text-gray-600 mt-1">Number of API calls per day</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Growth Rate</label>
+                                <div class="flex items-center space-x-3">
+                                    <input type="range" id="growthRate" value="10" min="0" max="50" step="1" class="flex-1">
+                                    <span id="growthDisplay" class="text-red-600 font-medium w-12">10%</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-1">Expected monthly traffic growth</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Input Tokens per Request</label>
+                                <input type="number" id="inputTokens" value="500" min="0" step="100"
+                                    class="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                <p class="text-xs text-gray-600 mt-1">Average tokens sent to model (1k tokens ≈ 750 words)</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Output Tokens per Request</label>
+                                <input type="number" id="outputTokens" value="200" min="0" step="100"
+                                    class="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-gray-900 focus:border-red-500 focus:outline-none focus:ring-1 focus:ring-red-500">
+                                <p class="text-xs text-gray-600 mt-1">Average tokens generated by model</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8">
+                    <button onclick="prevStep()" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded text-sm font-medium transition-colors">
+                        ← Back
+                    </button>
+                    <button onclick="nextStep()" class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm font-medium transition-colors">
+                        Next →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 4: Model Selection -->
+            <div id="stepContent4" class="slide-in hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Model Selection & Configuration</h2>
+                    <p class="text-sm text-gray-600">Choose providers and configure deployment-specific requirements</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <!-- SaaS -->
+                    <div class="bg-white rounded-lg border border-gray-300">
+                        <div class="p-4 border-b border-gray-300">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-red-600">SaaS APIs</h3>
+                                <div id="toggleSaas" class="toggle-switch active" onclick="toggleOption('saas')"></div>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">True SaaS providers with proprietary models</p>
+                        </div>
+
+                        <div id="saasOptions" class="p-4">
+                            <div id="saasConfigsContainer">
+                                <!-- Configuration 1 -->
+                                <div id="saasConfig1" class="saas-config space-y-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-semibold text-gray-700">Configuration 1</span>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">Provider</label>
+                                        <select id="saasProvider1" onchange="updateSaasModels(1)" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                                            <option value="">Select Provider</option>
+                                            <!-- Populated by JS -->
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">Model</label>
+                                        <select id="saasModel1" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none" disabled>
+                                            <option value="">Choose provider first</option>
+                                        </select>
+                                    </div>
+
+                                    <div id="saasPriceInfo1" class="text-xs text-gray-600"></div>
+
+                                    <!-- SaaS Specific Requirements -->
+                                    <div class="border-t border-gray-200 pt-3 mt-4">
+                                        <h4 class="text-xs font-semibold text-gray-700 mb-3">Requirements</h4>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <label class="text-xs font-medium text-gray-600">HIPAA/Compliance Required</label>
+                                                <p class="text-xs text-gray-500">Filters providers with BAA support</p>
+                                            </div>
+                                            <div id="toggleSaasHipaa1" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add Another Button -->
+                            <div class="mt-4 pt-3 border-t border-gray-200">
+                                <button id="addSaasConfig" onclick="addSaasConfiguration()" class="w-full px-3 py-2 text-xs font-medium text-red-600 border border-red-300 rounded hover:bg-red-50 transition-colors">
+                                    + Add Another SaaS API
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Managed Models -->
+                    <div class="bg-white rounded-lg border border-gray-300">
+                        <div class="p-4 border-b border-gray-300">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-red-600">Managed Models</h3>
+                                <div id="toggleManaged" class="toggle-switch active" onclick="toggleOption('managed')"></div>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">Cloud-hosted open-source models</p>
+                        </div>
+
+                        <div id="managedOptions" class="p-4">
+                            <div id="managedConfigsContainer">
+                                <!-- Configuration 1 -->
+                                <div id="managedConfig1" class="managed-config space-y-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-semibold text-gray-700">Configuration 1</span>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">Provider</label>
+                                        <select id="managedProvider1" onchange="updateManagedModels(1)" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                                            <option value="">Select Provider</option>
+                                            <!-- Populated by JS -->
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">Model</label>
+                                        <select id="managedModel1" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none" disabled>
+                                            <option value="">Choose provider first</option>
+                                        </select>
+                                    </div>
+
+                                    <div id="managedPriceInfo1" class="text-xs text-gray-600"></div>
+
+                                    <!-- Managed Models Specific Requirements -->
+                                    <div class="border-t border-gray-200 pt-3 mt-4">
+                                        <h4 class="text-xs font-semibold text-gray-700 mb-3">Requirements</h4>
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <label class="text-xs font-medium text-gray-600">HIPAA/Compliance Required</label>
+                                                <p class="text-xs text-gray-500">May limit provider options</p>
+                                            </div>
+                                            <div id="toggleManagedHipaa1" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add Another Button -->
+                            <div class="mt-4 pt-3 border-t border-gray-200">
+                                <button id="addManagedConfig" onclick="addManagedConfiguration()" class="w-full px-3 py-2 text-xs font-medium text-red-600 border border-red-300 rounded hover:bg-red-50 transition-colors">
+                                    + Add Another Managed Model
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raw GPUs -->
+                    <div class="bg-white rounded-lg border border-gray-300">
+                        <div class="p-4 border-b border-gray-300">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-sm font-semibold text-red-600">Raw GPUs</h3>
+                                <div id="toggleRawGpu" class="toggle-switch active" onclick="toggleOption('rawgpu')"></div>
+                            </div>
+                            <p class="text-xs text-gray-600 mt-1">Cloud Service Providers (CSP)</p>
+                        </div>
+
+                        <div id="rawgpuOptions" class="p-4">
+                            <div id="rawgpuConfigsContainer">
+                                <!-- Configuration 1 -->
+                                <div id="rawgpuConfig1" class="rawgpu-config space-y-3">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-xs font-semibold text-gray-700">Configuration 1</span>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">Provider</label>
+                                        <select id="gpuProvider1" onchange="updateGpuOfferings(1)" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                                            <option value="">Select Provider</option>
+                                            <!-- Populated by JS -->
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">GPU Offering</label>
+                                        <select id="gpuOffering1" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none" disabled>
+                                            <option value="">Choose provider first</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-medium text-gray-600 mb-1">Inference Server</label>
+                                        <select id="inferenceServer1" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                                            <!-- Populated by JS -->
+                                        </select>
+                                        <div id="inferenceServerInfo1" class="text-xs text-gray-600 mt-1"></div>
+                                    </div>
+
+                                    <!-- Raw GPU Specific Configuration -->
+                                    <div class="border-t border-gray-200 pt-3 mt-4">
+                                        <h4 class="text-xs font-semibold text-gray-700 mb-3">Infrastructure Configuration</h4>
+
+                                        <div class="space-y-3">
+                                            <div>
+                                                <label class="block text-xs font-medium text-gray-600 mb-2">Commitment Discount</label>
+                                                <div class="flex items-center space-x-3">
+                                                    <span class="text-xs text-gray-500">0%</span>
+                                                    <input
+                                                        type="range"
+                                                        id="commitmentDiscount1"
+                                                        min="0"
+                                                        max="60"
+                                                        value="30"
+                                                        class="slider flex-1 h-2"
+                                                        oninput="updateCommitmentDisplay(1)"
+                                                    >
+                                                    <span class="text-xs text-gray-500">60%</span>
+                                                </div>
+                                                <div class="flex justify-between items-center mt-1">
+                                                    <span id="commitmentDisplay1" class="text-xs font-medium text-red-600">30% off</span>
+                                                    <span class="text-xs text-gray-500">Longer commitments = higher discounts</span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <label class="block text-xs font-medium text-gray-600 mb-1">Engineering Support</label>
+                                                <select id="engineeringPct1" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                                                    <option value="0">No dedicated engineer</option>
+                                                    <option value="0.25" selected>Part-time (25%)</option>
+                                                    <option value="0.5">Half-time (50%)</option>
+                                                    <option value="1">Full-time (100%)</option>
+                                                    <option value="2">Team (2 engineers)</option>
+                                                </select>
+                                                <p class="text-xs text-gray-500 mt-1">$120k/year base salary per engineer</p>
+                                            </div>
+
+                                            <div class="space-y-2">
+                                                <div class="flex items-center justify-between">
+                                                    <div>
+                                                        <label class="text-xs font-medium text-gray-600">High Availability</label>
+                                                        <p class="text-xs text-gray-500">2x GPU count for failover redundancy</p>
+                                                    </div>
+                                                    <div id="toggleHA1" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                                                </div>
+
+                                                <div class="flex items-center justify-between">
+                                                    <div>
+                                                        <label class="text-xs font-medium text-gray-600">Monitoring Stack</label>
+                                                        <p class="text-xs text-gray-500">Datadog/Grafana + alerting (~$350/mo)</p>
+                                                    </div>
+                                                    <div id="toggleMonitoring1" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="gpuInfo1" class="text-xs text-gray-600"></div>
+                                </div>
+                            </div>
+
+                            <!-- Add Another Button -->
+                            <div class="mt-4 pt-3 border-t border-gray-200">
+                                <button id="addRawgpuConfig" onclick="addRawGpuConfiguration()" class="w-full px-3 py-2 text-xs font-medium text-red-600 border border-red-300 rounded hover:bg-red-50 transition-colors">
+                                    + Add Another Raw GPU
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8">
+                    <button onclick="prevStep()" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded text-sm font-medium transition-colors">
+                        ← Back
+                    </button>
+                    <button onclick="calculateResults()" class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm font-medium transition-colors">
+                        Calculate →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 5: Results -->
+            <div id="stepContent5" class="slide-in hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Cost Comparison Results</h2>
+                    <p class="text-sm text-gray-600">Monthly costs for your configuration</p>
+                </div>
+
+                <!-- Traffic Growth Impact -->
+                <div id="trafficGrowthSection" class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 shadow-sm">
+                    <h4 class="text-sm font-semibold text-amber-800 mb-3">Traffic Growth Impact</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-white rounded p-3 border border-amber-200">
+                            <div class="text-xs text-gray-600 mb-1">Starting (Month 1)</div>
+                            <div id="startingRequests" class="font-medium text-gray-900">10,000 req/day</div>
+                            <div id="startingCost" class="text-sm text-gray-600">$500/month</div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="text-amber-600">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded p-3 border border-amber-200">
+                            <div class="text-xs text-gray-600 mb-1">Ending (Final Month)</div>
+                            <div id="endingRequests" class="font-medium text-gray-900">25,000 req/day</div>
+                            <div id="endingCost" class="text-sm text-gray-600">$1,250/month</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <p class="text-xs text-amber-700">
+                            <span id="growthSummary">With 10% monthly growth over 36 months, your costs will increase significantly due to higher traffic</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cost Cards -->
+                <div id="costCardsContainer" class="grid gap-4 mb-6">
+                    <!-- SaaS Card -->
+                    <div id="saasCard" class="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-300 rounded-lg p-6 text-center hidden shadow-lg">
+                        <h3 class="text-sm font-semibold text-red-700 mb-2">SaaS APIs</h3>
+                        <p id="saasCost" class="text-3xl font-bold text-gray-900">$0</p>
+                        <p id="saasDetail" class="text-xs text-gray-700 mt-2"></p>
+                    </div>
+
+                    <!-- Managed Models Card -->
+                    <div id="managedCard" class="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-300 rounded-lg p-6 text-center hidden shadow-lg">
+                        <h3 class="text-sm font-semibold text-orange-700 mb-2">Managed Models</h3>
+                        <p id="managedCost" class="text-3xl font-bold text-gray-900">$0</p>
+                        <p id="managedDetail" class="text-xs text-gray-700 mt-2"></p>
+                    </div>
+
+                    <!-- Raw GPU Card -->
+                    <div id="rawGpuCard" class="bg-gradient-to-br from-rose-50 to-rose-100 border-2 border-rose-300 rounded-lg p-6 text-center hidden shadow-lg">
+                        <h3 class="text-sm font-semibold text-rose-700 mb-2">Raw GPUs</h3>
+                        <p id="rawGpuCost" class="text-3xl font-bold text-gray-900">$0</p>
+                        <p id="rawGpuDetail" class="text-xs text-gray-700 mt-2"></p>
+                    </div>
+                </div>
+
+                <!-- Winner Message -->
+                <div id="verdictBox" class="bg-green-50 rounded-lg p-4 border border-green-200 mb-6 shadow-sm">
+                    <div id="verdictText" class="text-sm text-gray-700"></div>
+                </div>
+
+                <!-- Chart -->
+                <div class="bg-white rounded-lg p-4 border border-gray-200 mb-6 shadow-sm">
+                    <h4 id="chartTitle" class="text-sm font-semibold text-gray-700 mb-3">12-Month Projection</h4>
+                    <div class="h-48">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Calculation Breakdown -->
+                <div class="bg-white rounded-lg border border-gray-200 mb-6 shadow-sm">
+                    <div class="p-4 border-b border-gray-300">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center cursor-pointer" onclick="toggleBreakdown()">
+                                <h4 class="text-sm font-semibold text-gray-700 flex items-center">
+                                    <span>Calculation Breakdown</span>
+                                    <svg id="breakdownChevron" class="w-4 h-4 ml-2 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"></path>
+                                    </svg>
+                                </h4>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label class="flex items-center text-xs text-gray-600">
+                                    <input type="checkbox" id="showMonthlyDetails" onchange="updateBreakdownDisplay()" class="mr-2 rounded border-gray-400 bg-white text-red-600 focus:ring-red-500">
+                                    Monthly Details
+                                </label>
+                                <button id="downloadBtn" onclick="downloadBreakdown()" class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs rounded transition-colors">
+                                    Download CSV
+                                </button>
+                                <button id="shareBtn" onclick="generateShareLink()" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded transition-colors">
+                                    Share Results
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-1">Click to see detailed cost calculations and projections</p>
+                        <div id="shareLinkContainer" class="hidden mt-3">
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Shareable Link:</label>
+                            <input type="text" id="shareLinkInput" readonly class="w-full bg-gray-100 border border-gray-300 rounded px-3 py-2 text-xs text-gray-700 cursor-copy" onclick="this.select()">
+                        </div>
+                    </div>
+
+                    <div id="calculationBreakdown" class="hidden">
+                        <!-- Dynamically populated breakdown sections -->
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <button onclick="prevStep()" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded text-sm font-medium transition-colors">
+                        ← Back
+                    </button>
+                    <button onclick="startOver()" class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded text-sm font-medium transition-colors">
+                        Start Over
+                    </button>
+                </div>
+            </div>
+
+    </main>
+
+    <script>
+    // Comprehensive pricing database with all major providers
+    const PRICING_DB = {
+        lastUpdated: '2026-02-10',
+        saas: {
+            // OpenAI (Standard API)
+            'gpt-5.2':            { name: 'GPT-5.2 (Latest)',   provider: 'OpenAI',     input: 1.75,  output: 14.00, desc: 'Coding, Agents, Complex logic' },
+            'gpt-5-mini':         { name: 'GPT-5 Mini',         provider: 'OpenAI',     input: 0.25,  output: 2.00,  desc: 'High-speed, high-volume tasks' },
+            'o3-reasoning':       { name: 'o3 (Reasoning)',     provider: 'OpenAI',     input: 2.00,  output: 8.00,  desc: 'STEM, Math, Logical reasoning' },
+            'gpt-4o':             { name: 'GPT-4o',             provider: 'OpenAI',     input: 2.50,  output: 10.00, desc: 'Multimodal (Vision/Audio)' },
+            'gpt-4o-mini':        { name: 'GPT-4o Mini',        provider: 'OpenAI',     input: 0.15,  output: 0.60,  desc: 'Cheapest reliable multi-modal' },
+
+            // Anthropic (Claude API)
+            'claude-4.5-opus':    { name: 'Claude 4.5 Opus',    provider: 'Anthropic',  input: 5.00,  output: 25.00, desc: 'Research, Enterprise-grade output' },
+            'claude-4.5-sonnet':  { name: 'Claude 4.5 Sonnet',  provider: 'Anthropic',  input: 3.00,  output: 15.00, desc: 'General purpose, balanced' },
+            'claude-4.5-haiku':   { name: 'Claude 4.5 Haiku',   provider: 'Anthropic',  input: 1.00,  output: 5.00,  desc: 'Low-latency chat, fast tools' },
+            'claude-3.5-sonnet':  { name: 'Claude 3.5 Sonnet',  provider: 'Anthropic',  input: 3.00,  output: 15.00, desc: 'Legacy stability, widely adopted' },
+
+            // Google (Gemini API / Vertex AI)
+            'gemini-3-pro':       { name: 'Gemini 3 Pro',       provider: 'Google',     input: 2.00,  output: 12.00, desc: 'Deep Research, long-form content' },
+            'gemini-3-flash':     { name: 'Gemini 3 Flash',     provider: 'Google',     input: 0.50,  output: 3.00,  desc: 'Ultra-fast performance' },
+            'gemini-2.5-pro':     { name: 'Gemini 2.5 Pro',     provider: 'Google',     input: 1.25,  output: 10.00, desc: 'Deeply integrated GCP workloads' },
+            'gemini-1.5-flash':   { name: 'Gemini 1.5 Flash',   provider: 'Google',     input: 0.075, output: 0.30,  desc: 'Cheapest overall for volume' },
+
+            // Mistral AI (La Plateforme)
+            'mistral-large-3':    { name: 'Mistral Large 3',    provider: 'Mistral AI', input: 2.00,  output: 6.00,  desc: 'Reasoning at low cost' },
+            'mistral-medium-3':   { name: 'Mistral Medium 3',   provider: 'Mistral AI', input: 1.00,  output: 3.00,  desc: 'High-performance value' },
+            'mistral-small-3.1':  { name: 'Mistral Small 3.1',  provider: 'Mistral AI', input: 0.10,  output: 0.30,  desc: 'Budget-conscious automation' },
+        },
+        managed: {
+            // Groq
+            'groq-llama3-70b':      { name: 'Llama 3.1 70B',     provider: 'Groq',        input: 0.59, output: 0.79 },
+            'groq-llama3-8b':       { name: 'Llama 3.1 8B',      provider: 'Groq',        input: 0.05, output: 0.08 },
+            'groq-mixtral-8x7b':    { name: 'Mixtral 8x7B',      provider: 'Groq',        input: 0.24, output: 0.24 },
+
+            // Together AI
+            'together-llama3-70b':  { name: 'Llama 3.1 70B',     provider: 'Together AI', input: 0.90, output: 0.90 },
+            'together-llama3-8b':   { name: 'Llama 3.1 8B',      provider: 'Together AI', input: 0.20, output: 0.20 },
+            'together-mixtral-8x7b':{ name: 'Mixtral 8x7B',      provider: 'Together AI', input: 0.60, output: 0.60 },
+            'together-qwen-72b':    { name: 'Qwen2 72B',         provider: 'Together AI', input: 0.90, output: 0.90 },
+
+            // Fireworks
+            'fireworks-llama3-70b': { name: 'Llama 3.1 70B',     provider: 'Fireworks',   input: 0.90, output: 0.90 },
+            'fireworks-llama3-8b':  { name: 'Llama 3.1 8B',      provider: 'Fireworks',   input: 0.20, output: 0.20 },
+            'fireworks-mixtral':    { name: 'Mixtral 8x7B',      provider: 'Fireworks',   input: 0.50, output: 0.50 },
+
+            // Replicate
+            'replicate-llama3-70b': { name: 'Llama 3.1 70B',     provider: 'Replicate',   input: 0.65, output: 2.75 },
+            'replicate-llama3-8b':  { name: 'Llama 3.1 8B',      provider: 'Replicate',   input: 0.05, output: 0.25 },
+            'replicate-mixtral':    { name: 'Mixtral 8x7B',      provider: 'Replicate',   input: 0.30, output: 1.00 },
+
+            // HuggingFace
+            'hf-llama3-70b':        { name: 'Llama 3.1 70B',     provider: 'HuggingFace', input: 0.50, output: 0.50 },
+            'hf-llama3-8b':         { name: 'Llama 3.1 8B',      provider: 'HuggingFace', input: 0.15, output: 0.15 },
+            'hf-mixtral-8x7b':      { name: 'Mixtral 8x7B',      provider: 'HuggingFace', input: 0.40, output: 0.40 },
+
+            // Anyscale
+            'anyscale-llama3-70b':  { name: 'Llama 3.1 70B',     provider: 'Anyscale',    input: 1.00, output: 1.00 },
+            'anyscale-llama3-8b':   { name: 'Llama 3.1 8B',      provider: 'Anyscale',    input: 0.15, output: 0.15 },
+            'anyscale-mixtral':     { name: 'Mixtral 8x7B',      provider: 'Anyscale',    input: 0.50, output: 0.50 },
+
+            // OctoAI
+            'octo-llama3-70b':      { name: 'Llama 3.1 70B',     provider: 'OctoAI',      input: 0.90, output: 0.90 },
+            'octo-llama3-8b':       { name: 'Llama 3.1 8B',      provider: 'OctoAI',      input: 0.15, output: 0.15 },
+            'octo-mixtral':         { name: 'Mixtral 8x7B',      provider: 'OctoAI',      input: 0.45, output: 0.45 },
+
+            // Perplexity
+            'pplx-llama3-70b':      { name: 'Llama 3.1 70B',     provider: 'Perplexity',  input: 1.00, output: 1.00 },
+            'pplx-mixtral':         { name: 'Mixtral 8x7B',      provider: 'Perplexity',  input: 0.60, output: 0.60 },
+        },
+        gpus: {
+            // AWS (Updated Feb 2026 - reflecting 45% H100 price reduction and A100 market corrections)
+            'aws-a100-40':    { name: 'A100 40GB',  provider: 'AWS',          hourly: 0.80,  type: 'a100-40',  reservable: true  },
+            'aws-a100-80':    { name: 'A100 80GB',  provider: 'AWS',          hourly: 0.95,  type: 'a100-80',  reservable: true  },
+            'aws-h100':       { name: 'H100 80GB',  provider: 'AWS',          hourly: 2.50,  type: 'h100',     reservable: true  },
+            'aws-v100':       { name: 'V100 32GB',  provider: 'AWS',          hourly: 1.50,  type: 'v100',     reservable: true  },
+
+            // Google Cloud (Updated Feb 2026 - reflecting current market rates)
+            'gcp-a100-40':    { name: 'A100 40GB',  provider: 'GCP',          hourly: 1.42,  type: 'a100-40',  reservable: true  },
+            'gcp-a100-80':    { name: 'A100 80GB',  provider: 'GCP',          hourly: 1.76,  type: 'a100-80',  reservable: true  },
+            'gcp-h100':       { name: 'H100 80GB',  provider: 'GCP',          hourly: 3.50,  type: 'h100',     reservable: true  },
+            'gcp-v100':       { name: 'V100 16GB',  provider: 'GCP',          hourly: 1.20,  type: 'v100',     reservable: true  },
+
+            // Microsoft Azure (Updated Feb 2026 - aligned with market trends)
+            'azure-a100-80':  { name: 'A100 80GB',  provider: 'Azure',        hourly: 1.85,  type: 'a100-80',  reservable: true  },
+            'azure-h100':     { name: 'H100 80GB',  provider: 'Azure',        hourly: 3.75,  type: 'h100',     reservable: true  },
+            'azure-v100':     { name: 'V100 32GB',  provider: 'Azure',        hourly: 1.60,  type: 'v100',     reservable: true  },
+
+            // Lambda Labs (Updated Feb 2026 - current published rates)
+            'lambda-a100':    { name: 'A100 80GB',  provider: 'Lambda Labs',  hourly: 1.79,  type: 'a100-80',  reservable: false },
+            'lambda-h100':    { name: 'H100 80GB',  provider: 'Lambda Labs',  hourly: 2.99,  type: 'h100',     reservable: false },
+            'lambda-a10':     { name: 'A10 24GB',   provider: 'Lambda Labs',  hourly: 0.60,  type: 'a10',      reservable: false },
+
+            // RunPod (Updated Feb 2026 - adjusted for competitive market)
+            'runpod-a100':    { name: 'A100 80GB',  provider: 'RunPod',       hourly: 1.55,  type: 'a100-80',  reservable: false },
+            'runpod-h100':    { name: 'H100 80GB',  provider: 'RunPod',       hourly: 3.10,  type: 'h100',     reservable: false },
+            'runpod-a10':     { name: 'A10 24GB',   provider: 'RunPod',       hourly: 0.69,  type: 'a10',      reservable: false },
+            'runpod-rtx4090': { name: 'RTX 4090',   provider: 'RunPod',       hourly: 0.44,  type: 'rtx4090',  reservable: false },
+
+            // Paperspace (Updated Feb 2026 - competitive market adjustments)
+            'paperspace-a100': { name: 'A100 80GB', provider: 'Paperspace',   hourly: 1.85,  type: 'a100-80',  reservable: false },
+            'paperspace-v100': { name: 'V100 32GB', provider: 'Paperspace',   hourly: 1.45,  type: 'v100',     reservable: false },
+            'paperspace-rtx5000':{ name: 'RTX 5000', provider: 'Paperspace',  hourly: 0.78,  type: 'rtx5000',  reservable: false },
+
+            // CoreWeave (Updated Feb 2026 - adjusted for market competitiveness)
+            'coreweave-a100': { name: 'A100 80GB',  provider: 'CoreWeave',    hourly: 1.95,  type: 'a100-80',  reservable: true  },
+            'coreweave-h100': { name: 'H100 80GB',  provider: 'CoreWeave',    hourly: 3.25,  type: 'h100',     reservable: true  },
+            'coreweave-a40':  { name: 'A40 48GB',   provider: 'CoreWeave',    hourly: 1.28,  type: 'a40',      reservable: true  },
+
+            // Vast.ai (spot pricing)
+            'vast-a100':      { name: 'A100 80GB',  provider: 'Vast.ai',      hourly: 0.85,  type: 'a100-80',  reservable: false },
+            'vast-rtx4090':   { name: 'RTX 4090',   provider: 'Vast.ai',      hourly: 0.35,  type: 'rtx4090',  reservable: false },
+            'vast-rtx3090':   { name: 'RTX 3090',   provider: 'Vast.ai',      hourly: 0.25,  type: 'rtx3090',  reservable: false },
+
+            // Genesis Cloud
+            'genesis-a100':   { name: 'A100 80GB',  provider: 'Genesis',      hourly: 1.89,  type: 'a100-80',  reservable: false },
+            'genesis-rtx4090':{ name: 'RTX 4090',   provider: 'Genesis',      hourly: 0.59,  type: 'rtx4090',  reservable: false },
+        },
+        inferenceServers: {
+            'vllm':             { name: 'vLLM',                    license: 'Open Source', perGpuMonth: 0,    note: 'Free, community support only' },
+            'tgi':              { name: 'TGI (HuggingFace)',       license: 'Open Source', perGpuMonth: 0,    note: 'Free, HuggingFace maintained' },
+            'llamacpp':         { name: 'llama.cpp',               license: 'Open Source', perGpuMonth: 0,    note: 'Free, CPU+GPU, minimal dependencies' },
+            'nvidia-nim':       { name: 'NVIDIA NIM',              license: 'Commercial',  perGpuMonth: 375,  note: 'NVIDIA AI Enterprise — $4,500/GPU/yr' },
+            'nvidia-triton':    { name: 'NVIDIA Triton + Support', license: 'Commercial',  perGpuMonth: 375,  note: 'Triton is free; support needs AI Enterprise license' },
+            'anyscale':         { name: 'Anyscale (Ray Serve)',    license: 'Commercial',  perGpuMonth: 250,  note: 'Managed Ray platform — ~$250/GPU/mo' },
+            'databricks':       { name: 'Databricks Model Serving',license: 'Commercial',  perGpuMonth: 300,  note: 'Platform fee on top of compute — ~$300/GPU/mo' },
+            'redhat-ai':        { name: 'RedHat AI Inference',     license: 'Commercial',  perGpuMonth: 280,  note: 'RedHat OpenShift AI — ~$280/GPU/mo with support' },
+        }
+    };
+
+    // Throughput estimates (tokens/second) for different GPU types and model configurations
+    const THROUGHPUT = {
+        'a100-40': {
+            '7b':   { fp16: 300,  int8: 450,  int4: 650  },
+            '13b':  { fp16: 180,  int8: 280,  int4: 400  },
+            '70b':  { fp16: null, int8: 55,   int4: 90   },
+            '405b': { fp16: null, int8: null,  int4: 45   },
+        },
+        'a100-80': {
+            '7b':   { fp16: 350,  int8: 500,  int4: 700  },
+            '13b':  { fp16: 220,  int8: 320,  int4: 450  },
+            '70b':  { fp16: 35,   int8: 60,   int4: 110  },
+            '405b': { fp16: null, int8: 12,   int4: 25   },
+        },
+        'h100': {
+            '7b':   { fp16: 600,  int8: 900,  int4: 1200 },
+            '13b':  { fp16: 400,  int8: 600,  int4: 850  },
+            '70b':  { fp16: 70,   int8: 120,  int4: 200  },
+            '405b': { fp16: null, int8: 25,   int4: 50   },
+        },
+        'v100': {
+            '7b':   { fp16: 180,  int8: 250,  int4: 350  },
+            '13b':  { fp16: 90,   int8: 140,  int4: 200  },
+            '70b':  { fp16: null, int8: null, int4: null },
+            '405b': { fp16: null, int8: null,  int4: null },
+        },
+        'a10': {
+            '7b':   { fp16: 120,  int8: 180,  int4: 250  },
+            '13b':  { fp16: 60,   int8: 95,   int4: 130  },
+            '70b':  { fp16: null, int8: null, int4: null },
+            '405b': { fp16: null, int8: null,  int4: null },
+        },
+        'a40': {
+            '7b':   { fp16: 250,  int8: 350,  int4: 500  },
+            '13b':  { fp16: 150,  int8: 220,  int4: 300  },
+            '70b':  { fp16: null, int8: 40,   int4: 70   },
+            '405b': { fp16: null, int8: null,  int4: null },
+        },
+        'rtx4090': {
+            '7b':   { fp16: 200,  int8: 300,  int4: 450  },
+            '13b':  { fp16: 100,  int8: 150,  int4: 220  },
+            '70b':  { fp16: null, int8: null, int4: null },
+            '405b': { fp16: null, int8: null,  int4: null },
+        },
+        'rtx3090': {
+            '7b':   { fp16: 150,  int8: 220,  int4: 320  },
+            '13b':  { fp16: 75,   int8: 110,  int4: 160  },
+            '70b':  { fp16: null, int8: null, int4: null },
+            '405b': { fp16: null, int8: null,  int4: null },
+        },
+        'rtx5000': {
+            '7b':   { fp16: 140,  int8: 200,  int4: 300  },
+            '13b':  { fp16: 70,   int8: 100,  int4: 150  },
+            '70b':  { fp16: null, int8: null, int4: null },
+            '405b': { fp16: null, int8: null,  int4: null },
+        }
+    };
+
+    // Minimum GPU requirements for different model sizes and quantization levels
+    const MIN_GPUS = {
+        'a100-40': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 2, int4: 1 }, '405b': { fp16: 0, int8: 0, int4: 6 },
+        },
+        'a100-80': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 2, int8: 1, int4: 1 }, '405b': { fp16: 0, int8: 4, int4: 2 },
+        },
+        'h100': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 2, int8: 1, int4: 1 }, '405b': { fp16: 0, int8: 3, int4: 2 },
+        },
+        'v100': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 0, int4: 0 }, '405b': { fp16: 0, int8: 0, int4: 0 },
+        },
+        'a10': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 0, int4: 0 }, '405b': { fp16: 0, int8: 0, int4: 0 },
+        },
+        'a40': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 2, int4: 1 }, '405b': { fp16: 0, int8: 0, int4: 0 },
+        },
+        'rtx4090': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 0, int4: 0 }, '405b': { fp16: 0, int8: 0, int4: 0 },
+        },
+        'rtx3090': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 0, int4: 0 }, '405b': { fp16: 0, int8: 0, int4: 0 },
+        },
+        'rtx5000': {
+            '7b': { fp16: 1, int8: 1, int4: 1 }, '13b': { fp16: 1, int8: 1, int4: 1 },
+            '70b': { fp16: 0, int8: 0, int4: 0 }, '405b': { fp16: 0, int8: 0, int4: 0 },
+        }
+    };
+
+    const MODEL_STORAGE_GB = { '7b': 14, '13b': 26, '70b': 140, '405b': 810 };
+    const QUANT_FACTOR     = { fp16: 1.0, int8: 0.5, int4: 0.25 };
+    const TIER_DISCOUNTS   = { ondemand: 1.0, reserved1yr: 0.60, reserved3yr: 0.40, spot: 0.35 };
+
+    const SCENARIOS = {
+        'support': {
+            title: 'Customer Support',
+            config: { dailyRequests: 15000, inputTokens: 300, outputTokens: 150, growthRate: 12, saasModel: 'gpt-4o-mini', managedModel: 'groq-llama3-8b' }
+        },
+        'rag': {
+            title: 'RAG Pipeline',
+            config: { dailyRequests: 5000, inputTokens: 3000, outputTokens: 500, growthRate: 10, saasModel: 'gemini-3-pro', managedModel: 'together-llama3-70b' }
+        },
+        'code': {
+            title: 'Code Assistant',
+            config: { dailyRequests: 3000, inputTokens: 800, outputTokens: 1500, growthRate: 15, saasModel: 'gpt-5.2', managedModel: 'together-llama3-70b' }
+        },
+        'summarize': {
+            title: 'Document Summarization',
+            config: { dailyRequests: 1000, inputTokens: 8000, outputTokens: 800, growthRate: 5, saasModel: 'gemini-3-pro', managedModel: 'together-llama3-70b' }
+        },
+        'healthcare': {
+            title: 'Healthcare (HIPAA)',
+            config: { dailyRequests: 8000, inputTokens: 600, outputTokens: 400, growthRate: 8, saasModel: 'claude-4.5-sonnet', managedModel: 'together-llama3-70b', hipaa: true }
+        },
+        'custom': {
+            title: 'Custom Setup',
+            config: { dailyRequests: 10000, inputTokens: 500, outputTokens: 200, growthRate: 10, saasModel: 'gpt-5-mini', managedModel: 'groq-llama3-8b' }
+        }
+    };
+
+    // State
+    let currentStep = 1;
+    let selectedScenario = null;
+    let lineChart = null;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        populateDropdowns();
+        initChart();
+        applyUrlParams(); // Check for and apply shared link parameters
+
+        // Set some default values to ensure wizard works
+        setTimeout(() => {
+            // Set default SaaS provider if none selected
+            const saasProviderSelect = document.getElementById('saasProvider1');
+            if (saasProviderSelect && !saasProviderSelect.value) {
+                saasProviderSelect.value = 'OpenAI'; // Default to OpenAI
+                updateSaasModels(1);
+                setTimeout(() => {
+                    const saasModelSelect = document.getElementById('saasModel1');
+                    if (saasModelSelect && saasModelSelect.options.length > 0 && !saasModelSelect.value) {
+                        saasModelSelect.value = saasModelSelect.options[0].value;
+                        updateModelPrices();
+                    }
+                }, 20);
+            }
+        }, 100);
+
+        // Update growth display
+        document.getElementById('growthRate').addEventListener('input', function() {
+            document.getElementById('growthDisplay').textContent = this.value + '%';
+        });
+
+        // Update time period display
+        document.getElementById('timePeriod').addEventListener('input', function() {
+            const months = parseInt(this.value);
+            const years = Math.floor(months / 12);
+            const remainingMonths = months % 12;
+
+            // Update months display
+            document.getElementById('timePeriodMonths').textContent = months;
+
+            // Update human-readable display
+            let display = '';
+            if (years > 0) {
+                display += `${years} year${years > 1 ? 's' : ''}`;
+                if (remainingMonths > 0) {
+                    display += `, ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
+                }
+            } else {
+                display = `${months} month${months > 1 ? 's' : ''}`;
+            }
+
+            document.getElementById('timePeriodDisplay').textContent = display;
+        });
+
+        // Trigger initial time period display update
+        document.getElementById('timePeriod').dispatchEvent(new Event('input'));
+    });
+
+    function generateShareLink() {
+        const inputs = getInputs();
+        const data = JSON.stringify(inputs);
+        const encodedData = btoa(data);
+        const url = `${window.location.origin}${window.location.pathname}?data=${encodedData}`;
+
+        const shareLinkInput = document.getElementById('shareLinkInput');
+        shareLinkInput.value = url;
+        document.getElementById('shareLinkContainer').classList.remove('hidden');
+        shareLinkInput.select();
+        // Optional: copy to clipboard
+        try {
+            navigator.clipboard.writeText(url);
+            alert('Shareable link copied to clipboard!');
+        } catch (err) {
+            // Clipboard API may not be available
+        }
+    }
+
+    function applyUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const data = urlParams.get('data');
+        if (data) {
+            try {
+                const decodedData = atob(data);
+                const inputs = JSON.parse(decodedData);
+
+                // Populate all form fields from the parsed data
+                Object.keys(inputs).forEach(key => {
+                    const el = document.getElementById(key);
+                    if (el) {
+                        if (el.classList.contains('toggle-switch')) {
+                            if (inputs[key] && !el.classList.contains('active')) {
+                                el.classList.add('active');
+                            } else if (!inputs[key] && el.classList.contains('active')) {
+                                el.classList.remove('active');
+                            }
+                            // Also trigger the visual update for the options panel
+                            if (key.startsWith('toggle')) {
+                                const optionType = key.substring('toggle'.length).toLowerCase();
+                                const options = document.getElementById(`${optionType}Options`);
+                                if (options) {
+                                    if (inputs[key]) {
+                                        options.style.opacity = '1';
+                                        options.style.pointerEvents = 'auto';
+                                    } else {
+                                        options.style.opacity = '0.5';
+                                        options.style.pointerEvents = 'none';
+                                    }
+                                }
+                            }
+                        } else {
+                            el.value = inputs[key];
+                        }
+                    }
+                });
+
+                // Special handling for elements that need updates
+                document.getElementById('growthDisplay').textContent = inputs.growthRate + '%';
+                document.getElementById('timePeriod').dispatchEvent(new Event('input')); // Trigger update for time period display
+                updateSaasModels(); // Update SaaS models based on provider
+                setTimeout(() => { // Wait for saas models to populate
+                    document.getElementById('saasModel').value = inputs.saasModel;
+                    updateModelPrices();
+                    
+                    // Automatically calculate and jump to results
+                    calculateResults();
+                    
+                    // Ensure we are on the results step
+                    for(let i = 1; i < 5; i++) {
+                        updateStepIndicator(i, 'completed');
+                    }
+                    currentStep = 5;
+                    updateStepIndicator(5, 'active');
+                    showStep(5);
+
+                }, 200);
+
+
+            } catch (e) {
+                console.error("Failed to parse shared link data:", e);
+            }
+        }
+    }
+
+    function populateDropdowns() {
+        // Populate SaaS providers for all configurations
+        for (let configNum = 1; configNum <= saasConfigCount; configNum++) {
+            const saasProviderSelect = document.getElementById(`saasProvider${configNum}`);
+            if (!saasProviderSelect) continue;
+
+            saasProviderSelect.innerHTML = '<option value="">Select Provider</option>';
+
+            const saasProviders = [...new Set(Object.values(PRICING_DB.saas).map(m => m.provider))];
+            for (const provider of saasProviders) {
+                const o = document.createElement('option');
+                o.value = provider;
+                o.textContent = provider;
+                saasProviderSelect.appendChild(o);
+            }
+
+            // Auto-select cheapest SaaS provider for first config
+            if (configNum === 1) {
+                let cheapestSaas = null;
+                let cheapestCost = Infinity;
+                let cheapestProvider = null;
+
+                Object.entries(PRICING_DB.saas).forEach(([key, model]) => {
+                    const avgCost = (model.input + model.output) / 2; // Simple average
+                    if (avgCost < cheapestCost) {
+                        cheapestCost = avgCost;
+                        cheapestSaas = key;
+                        cheapestProvider = model.provider;
+                    }
+                });
+
+                if (cheapestProvider) {
+                    saasProviderSelect.value = cheapestProvider;
+                    updateSaasModels(configNum);
+                }
+            }
+        }
+
+        // Populate Managed providers for all configurations
+        for (let configNum = 1; configNum <= managedConfigCount; configNum++) {
+            const managedProviderSelect = document.getElementById(`managedProvider${configNum}`);
+            if (!managedProviderSelect) continue;
+
+            managedProviderSelect.innerHTML = '<option value="">Select Provider</option>';
+
+            const managedProviders = [...new Set(Object.values(PRICING_DB.managed).map(m => m.provider))];
+            for (const provider of managedProviders) {
+                const o = document.createElement('option');
+                o.value = provider;
+                o.textContent = provider;
+                managedProviderSelect.appendChild(o);
+            }
+
+            // Auto-select cheapest Managed provider for first config
+            if (configNum === 1) {
+                let cheapestManaged = null;
+                let cheapestCost = Infinity;
+                let cheapestProvider = null;
+
+                Object.entries(PRICING_DB.managed).forEach(([key, model]) => {
+                    const avgCost = (model.input + model.output) / 2; // Simple average
+                    if (avgCost < cheapestCost) {
+                        cheapestCost = avgCost;
+                        cheapestManaged = key;
+                        cheapestProvider = model.provider;
+                    }
+                });
+
+                if (cheapestProvider) {
+                    managedProviderSelect.value = cheapestProvider;
+                    updateManagedModels(configNum);
+                }
+            }
+        }
+
+        // Populate GPU providers for all configurations
+        const providerDisplayNames = {
+            'AWS': 'AWS (Amazon Web Services)',
+            'GCP': 'GCP (Google Cloud Platform)',
+            'Azure': 'Microsoft Azure',
+            'Lambda Labs': 'Lambda Labs',
+            'RunPod': 'RunPod',
+            'Paperspace': 'Paperspace',
+            'CoreWeave': 'CoreWeave',
+            'Vast.ai': 'Vast.ai',
+            'Genesis': 'Genesis Cloud'
+        };
+
+        const gpuProviders = [...new Set(Object.values(PRICING_DB.gpus).map(g => g.provider))];
+        const majorProviders = ['AWS', 'GCP', 'Azure'];
+        const sortedProviders = gpuProviders.sort((a, b) => {
+            const aIsMajor = majorProviders.includes(a);
+            const bIsMajor = majorProviders.includes(b);
+            if (aIsMajor && !bIsMajor) return -1;
+            if (!aIsMajor && bIsMajor) return 1;
+            return a.localeCompare(b);
+        });
+
+        for (let configNum = 1; configNum <= rawgpuConfigCount; configNum++) {
+            const gpuProviderSelect = document.getElementById(`gpuProvider${configNum}`);
+            if (!gpuProviderSelect) continue;
+
+            gpuProviderSelect.innerHTML = '<option value="">Select Provider</option>';
+
+            for (const provider of sortedProviders) {
+                const o = document.createElement('option');
+                o.value = provider;
+                o.textContent = providerDisplayNames[provider] || provider;
+                gpuProviderSelect.appendChild(o);
+            }
+
+            // Auto-select cheapest GPU provider as default for first config
+            if (configNum === 1) {
+                // Find the cheapest GPU option
+                let cheapestGpu = null;
+                let cheapestCost = Infinity;
+                let cheapestProvider = null;
+
+                Object.entries(PRICING_DB.gpus).forEach(([key, gpu]) => {
+                    if (gpu.hourly < cheapestCost) {
+                        cheapestCost = gpu.hourly;
+                        cheapestGpu = key;
+                        cheapestProvider = gpu.provider;
+                    }
+                });
+
+                if (cheapestProvider && sortedProviders.includes(cheapestProvider)) {
+                    gpuProviderSelect.value = cheapestProvider;
+                    updateGpuOfferings(configNum);
+                }
+            }
+
+            // Populate inference servers for each config
+            const infSelect = document.getElementById(`inferenceServer${configNum}`);
+            if (infSelect) {
+                infSelect.innerHTML = '<option value="">Select Inference Server</option>';
+
+                for (const [key, s] of Object.entries(PRICING_DB.inferenceServers)) {
+                    const o = document.createElement('option');
+                    o.value = key;
+                    o.textContent = `${s.name} (${s.perGpuMonth === 0 ? 'Free' : '$' + s.perGpuMonth + '/GPU/mo'})`;
+                    infSelect.appendChild(o);
+                }
+            }
+        }
+
+        updateModelPrices();
+    }
+
+    function updateModelPrices() {
+        // Update SaaS pricing for all configurations
+        for (let configNum = 1; configNum <= saasConfigCount; configNum++) {
+            const saasModelEl = document.getElementById(`saasModel${configNum}`);
+            const saasPriceInfoEl = document.getElementById(`saasPriceInfo${configNum}`);
+
+            if (saasModelEl && saasPriceInfoEl) {
+                const saasModelKey = saasModelEl.value;
+                const saasModel = saasModelKey ? PRICING_DB.saas[saasModelKey] : null;
+
+                if (saasModel) {
+                    let priceText = `$${saasModel.input}/$${saasModel.output} per 1M tokens`;
+                    if (saasModel.desc) {
+                        priceText += ` • ${saasModel.desc}`;
+                    }
+                    saasPriceInfoEl.textContent = priceText;
+                } else {
+                    saasPriceInfoEl.textContent = '';
+                }
+            }
+        }
+
+        // Update Managed pricing for all configurations
+        for (let configNum = 1; configNum <= managedConfigCount; configNum++) {
+            const managedModelEl = document.getElementById(`managedModel${configNum}`);
+            const managedPriceInfoEl = document.getElementById(`managedPriceInfo${configNum}`);
+
+            if (managedModelEl && managedPriceInfoEl) {
+                const managedModel = PRICING_DB.managed[managedModelEl.value];
+
+                if (managedModel) {
+                    managedPriceInfoEl.textContent = `$${managedModel.input}/$${managedModel.output} per 1M tokens`;
+                } else {
+                    managedPriceInfoEl.textContent = '';
+                }
+            }
+        }
+
+        // Update GPU info for all configurations
+        for (let configNum = 1; configNum <= rawgpuConfigCount; configNum++) {
+            if (document.getElementById(`gpuOffering${configNum}`)) {
+                updateGpuInfo(configNum);
+            }
+        }
+    }
+
+    function updateGpuInfo(configNum = 1) {
+        const gpu = PRICING_DB.gpus[document.getElementById(`gpuOffering${configNum}`)?.value];
+        const inferenceServerKey = document.getElementById(`inferenceServer${configNum}`)?.value;
+
+        if (gpu) {
+            let info = `${gpu.name} — $${gpu.hourly.toFixed(2)}/hour`;
+
+            // Show if reservable
+            if (gpu.reservable) {
+                info += ` | Reservable`;
+            } else {
+                info += ` | On-demand only`;
+            }
+
+            const gpuInfoElement = document.getElementById(`gpuInfo${configNum}`);
+            if (gpuInfoElement) {
+                gpuInfoElement.textContent = info;
+            }
+        } else {
+            const gpuInfoElement = document.getElementById(`gpuInfo${configNum}`);
+            if (gpuInfoElement) {
+                gpuInfoElement.textContent = '';
+            }
+        }
+
+        // Update inference server info (if there's a single shared element)
+        if (inferenceServerKey && configNum === 1) {
+            const serverInfo = PRICING_DB.inferenceServers[inferenceServerKey];
+            if (serverInfo) {
+                const inferenceServerInfoElement = document.getElementById('inferenceServerInfo');
+                if (inferenceServerInfoElement) {
+                    inferenceServerInfoElement.textContent = serverInfo.note;
+                }
+            }
+        }
+    }
+
+    function updateCommitmentDisplay(configNum = '') {
+        const suffix = configNum ? configNum : '';
+        const discount = document.getElementById(`commitmentDiscount${suffix}`).value;
+        document.getElementById(`commitmentDisplay${suffix}`).textContent = `${discount}% off`;
+    }
+
+    // Configuration management variables
+    let saasConfigCount = 1;
+    let managedConfigCount = 1;
+    let rawgpuConfigCount = 1;
+
+    function addSaasConfiguration() {
+        if (saasConfigCount >= 3) return; // Limit to 3 configs
+
+        saasConfigCount++;
+        const container = document.getElementById('saasConfigsContainer');
+
+        const configHTML = `
+            <div id="saasConfig${saasConfigCount}" class="saas-config space-y-3 mt-4 pt-4 border-t border-gray-200">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-gray-700">Configuration ${saasConfigCount}</span>
+                    <button onclick="removeSaasConfiguration(${saasConfigCount})" class="text-xs text-red-600 hover:text-red-800">Remove</button>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Provider</label>
+                    <select id="saasProvider${saasConfigCount}" onchange="updateSaasModels(${saasConfigCount})" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                        <option value="">Select Provider</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Model</label>
+                    <select id="saasModel${saasConfigCount}" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none" disabled>
+                        <option value="">Choose provider first</option>
+                    </select>
+                </div>
+
+                <div id="saasPriceInfo${saasConfigCount}" class="text-xs text-gray-600"></div>
+
+                <div class="border-t border-gray-200 pt-3 mt-4">
+                    <h4 class="text-xs font-semibold text-gray-700 mb-3">Requirements</h4>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-xs font-medium text-gray-600">HIPAA/Compliance Required</label>
+                            <p class="text-xs text-gray-500">Filters providers with BAA support</p>
+                        </div>
+                        <div id="toggleSaasHipaa${saasConfigCount}" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.insertAdjacentHTML('beforeend', configHTML);
+        populateDropdowns(); // Repopulate dropdowns for new config
+
+        if (saasConfigCount >= 3) {
+            document.getElementById('addSaasConfig').style.display = 'none';
+        }
+    }
+
+    function removeSaasConfiguration(configNum) {
+        document.getElementById(`saasConfig${configNum}`).remove();
+        if (saasConfigCount >= 3) {
+            document.getElementById('addSaasConfig').style.display = 'block';
+        }
+    }
+
+    function addManagedConfiguration() {
+        if (managedConfigCount >= 3) return;
+
+        managedConfigCount++;
+        const container = document.getElementById('managedConfigsContainer');
+
+        const configHTML = `
+            <div id="managedConfig${managedConfigCount}" class="managed-config space-y-3 mt-4 pt-4 border-t border-gray-200">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-gray-700">Configuration ${managedConfigCount}</span>
+                    <button onclick="removeManagedConfiguration(${managedConfigCount})" class="text-xs text-red-600 hover:text-red-800">Remove</button>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Provider</label>
+                    <select id="managedProvider${managedConfigCount}" onchange="updateManagedModels(${managedConfigCount})" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                        <option value="">Select Provider</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Model</label>
+                    <select id="managedModel${managedConfigCount}" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none" disabled>
+                        <option value="">Choose provider first</option>
+                    </select>
+                </div>
+
+                <div id="managedPriceInfo${managedConfigCount}" class="text-xs text-gray-600"></div>
+
+                <div class="border-t border-gray-200 pt-3 mt-4">
+                    <h4 class="text-xs font-semibold text-gray-700 mb-3">Requirements</h4>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label class="text-xs font-medium text-gray-600">HIPAA/Compliance Required</label>
+                            <p class="text-xs text-gray-500">May limit provider options</p>
+                        </div>
+                        <div id="toggleManagedHipaa${managedConfigCount}" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.insertAdjacentHTML('beforeend', configHTML);
+        populateDropdowns();
+
+        if (managedConfigCount >= 3) {
+            document.getElementById('addManagedConfig').style.display = 'none';
+        }
+    }
+
+    function removeManagedConfiguration(configNum) {
+        document.getElementById(`managedConfig${configNum}`).remove();
+        if (managedConfigCount >= 3) {
+            document.getElementById('addManagedConfig').style.display = 'block';
+        }
+    }
+
+    function addRawGpuConfiguration() {
+        if (rawgpuConfigCount >= 3) return;
+
+        rawgpuConfigCount++;
+        const container = document.getElementById('rawgpuConfigsContainer');
+
+        const configHTML = `
+            <div id="rawgpuConfig${rawgpuConfigCount}" class="rawgpu-config space-y-3 mt-4 pt-4 border-t border-gray-200">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-semibold text-gray-700">Configuration ${rawgpuConfigCount}</span>
+                    <button onclick="removeRawGpuConfiguration(${rawgpuConfigCount})" class="text-xs text-red-600 hover:text-red-800">Remove</button>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Provider</label>
+                    <select id="gpuProvider${rawgpuConfigCount}" onchange="updateGpuOfferings(${rawgpuConfigCount})" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                        <option value="">Select Provider</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">GPU Offering</label>
+                    <select id="gpuOffering${rawgpuConfigCount}" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none" disabled>
+                        <option value="">Choose provider first</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Inference Server</label>
+                    <select id="inferenceServer${rawgpuConfigCount}" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                    </select>
+                </div>
+
+                <div class="border-t border-gray-200 pt-3 mt-4">
+                    <h4 class="text-xs font-semibold text-gray-700 mb-3">Infrastructure Configuration</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-2">Commitment Discount</label>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs text-gray-500">0%</span>
+                                <input type="range" id="commitmentDiscount${rawgpuConfigCount}" min="0" max="60" value="30" class="slider flex-1 h-2" oninput="updateCommitmentDisplay(${rawgpuConfigCount})">
+                                <span class="text-xs text-gray-500">60%</span>
+                            </div>
+                            <div class="flex justify-between items-center mt-1">
+                                <span id="commitmentDisplay${rawgpuConfigCount}" class="text-xs font-medium text-red-600">30% off</span>
+                                <span class="text-xs text-gray-500">Longer commitments = higher discounts</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Engineering Support</label>
+                            <select id="engineeringPct${rawgpuConfigCount}" class="w-full bg-white border border-gray-300 rounded px-3 py-2 text-sm text-gray-900 focus:border-red-500 focus:outline-none">
+                                <option value="0">No dedicated engineer</option>
+                                <option value="0.25" selected>Part-time (25%)</option>
+                                <option value="0.5">Half-time (50%)</option>
+                                <option value="1">Full-time (100%)</option>
+                                <option value="2">Team (2 engineers)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <label class="text-xs font-medium text-gray-600">High Availability</label>
+                                    <p class="text-xs text-gray-500">2x GPU count for redundancy</p>
+                                </div>
+                                <div id="toggleHA${rawgpuConfigCount}" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <label class="text-xs font-medium text-gray-600">Monitoring Stack</label>
+                                    <p class="text-xs text-gray-500">~$350/mo</p>
+                                </div>
+                                <div id="toggleMonitoring${rawgpuConfigCount}" class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gpuInfo${rawgpuConfigCount}" class="text-xs text-gray-600"></div>
+            </div>
+        `;
+
+        container.insertAdjacentHTML('beforeend', configHTML);
+        populateDropdowns();
+
+        if (rawgpuConfigCount >= 3) {
+            document.getElementById('addRawgpuConfig').style.display = 'none';
+        }
+    }
+
+    function removeRawGpuConfiguration(configNum) {
+        document.getElementById(`rawgpuConfig${configNum}`).remove();
+        if (rawgpuConfigCount >= 3) {
+            document.getElementById('addRawgpuConfig').style.display = 'block';
+        }
+    }
+
+    function updateSaasModels(configNum = 1) {
+        const selectedProvider = document.getElementById(`saasProvider${configNum}`).value;
+        const saasModelSelect = document.getElementById(`saasModel${configNum}`);
+
+        // Clear existing options
+        saasModelSelect.innerHTML = '';
+
+        if (!selectedProvider) {
+            saasModelSelect.disabled = true;
+            saasModelSelect.innerHTML = '<option value="">Choose provider first</option>';
+            updateModelPrices();
+            return;
+        }
+
+        // Enable and populate models for selected provider
+        saasModelSelect.disabled = false;
+
+        // Filter models by selected provider
+        const providerModels = Object.entries(PRICING_DB.saas)
+            .filter(([key, model]) => model.provider === selectedProvider);
+
+        for (const [key, model] of providerModels) {
+            const o = document.createElement('option');
+            o.value = key;
+            o.textContent = model.name;
+            saasModelSelect.appendChild(o);
+        }
+
+        // Select the first model by default if none is selected
+        if (providerModels.length > 0 && !saasModelSelect.value) {
+            saasModelSelect.value = providerModels[0][0];
+        }
+
+        updateModelPrices();
+    }
+
+    function updateManagedModels(configNum = 1) {
+        const selectedProvider = document.getElementById(`managedProvider${configNum}`).value;
+        const managedModelSelect = document.getElementById(`managedModel${configNum}`);
+
+        // Clear existing options
+        managedModelSelect.innerHTML = '';
+
+        if (!selectedProvider) {
+            managedModelSelect.disabled = true;
+            managedModelSelect.innerHTML = '<option value="">Choose provider first</option>';
+            updateModelPrices();
+            return;
+        }
+
+        // Enable and populate models for selected provider
+        managedModelSelect.disabled = false;
+
+        // Filter models by selected provider
+        const providerModels = Object.entries(PRICING_DB.managed)
+            .filter(([key, model]) => model.provider === selectedProvider);
+
+        for (const [key, model] of providerModels) {
+            const o = document.createElement('option');
+            o.value = key;
+            o.textContent = model.name;
+            managedModelSelect.appendChild(o);
+        }
+
+        // Select the first model by default if none is selected
+        if (providerModels.length > 0 && !managedModelSelect.value) {
+            managedModelSelect.value = providerModels[0][0];
+        }
+
+        updateModelPrices();
+    }
+
+    function updateGpuOfferings(configNum = 1) {
+        const selectedProvider = document.getElementById(`gpuProvider${configNum}`).value;
+        const gpuOfferingSelect = document.getElementById(`gpuOffering${configNum}`);
+
+        // Clear existing options
+        gpuOfferingSelect.innerHTML = '';
+
+        if (!selectedProvider) {
+            gpuOfferingSelect.disabled = true;
+            gpuOfferingSelect.innerHTML = '<option value="">Choose provider first</option>';
+            updateGpuInfo(configNum);
+            return;
+        }
+
+        // Enable and populate GPU offerings for selected provider
+        gpuOfferingSelect.disabled = false;
+
+        // Filter GPUs by selected provider
+        const providerGpus = Object.entries(PRICING_DB.gpus)
+            .filter(([key, gpu]) => gpu.provider === selectedProvider);
+
+        for (const [key, gpu] of providerGpus) {
+            const o = document.createElement('option');
+            o.value = key;
+            o.textContent = `${gpu.name} ($${gpu.hourly.toFixed(2)}/hr)`;
+            gpuOfferingSelect.appendChild(o);
+        }
+
+        // Select the first GPU offering by default if none is selected
+        if (providerGpus.length > 0 && !gpuOfferingSelect.value) {
+            gpuOfferingSelect.value = providerGpus[0][0];
+        }
+
+        updateGpuInfo(configNum);
+    }
+
+
+    function selectScenario(scenario) {
+        selectedScenario = scenario;
+
+        // Update UI
+        document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+        event.currentTarget.classList.add('selected');
+        document.getElementById('step2Next').disabled = false;
+
+        // Apply scenario config
+        if (scenario !== 'custom') {
+            const config = SCENARIOS[scenario].config;
+            const dailyRequestsEl = document.getElementById('dailyRequests');
+            const inputTokensEl = document.getElementById('inputTokens');
+            const outputTokensEl = document.getElementById('outputTokens');
+            const growthRateEl = document.getElementById('growthRate');
+            const growthDisplayEl = document.getElementById('growthDisplay');
+
+            if (dailyRequestsEl) dailyRequestsEl.value = config.dailyRequests;
+            if (inputTokensEl) inputTokensEl.value = config.inputTokens;
+            if (outputTokensEl) outputTokensEl.value = config.outputTokens;
+            if (growthRateEl) growthRateEl.value = config.growthRate;
+            if (growthDisplayEl) growthDisplayEl.textContent = config.growthRate + '%';
+
+            // Set SaaS provider and model
+            if (config.saasModel) {
+                const saasModel = PRICING_DB.saas[config.saasModel];
+                if (saasModel) {
+                    document.getElementById('saasProvider').value = saasModel.provider;
+                    updateSaasModels(); // This will populate models for the provider
+                    // Need to wait for models to populate before setting value
+                    setTimeout(() => {
+                        document.getElementById('saasModel').value = config.saasModel;
+                        updateModelPrices();
+                    }, 10);
+                }
+            }
+
+            if (config.managedModel) {
+                const managedModelInfo = PRICING_DB.managed[config.managedModel];
+                if (managedModelInfo) {
+                    // Set the provider first
+                    document.getElementById('managedProvider').value = managedModelInfo.provider;
+                    // Update the model dropdown for this provider
+                    updateManagedModels();
+                    // Then set the specific model
+                    document.getElementById('managedModel').value = config.managedModel;
+                }
+            }
+
+            // Note: HIPAA compliance is now handled through provider-specific toggles
+
+            // Set reasonable defaults for option enablement
+            if (scenario === 'healthcare') {
+                // Healthcare: only enable SaaS and Raw GPU (for compliance)
+                const managedToggle = document.getElementById('toggleManaged');
+                if (managedToggle && managedToggle.classList.contains('active')) {
+                    toggleOption('managed');
+                }
+            }
+
+            updateModelPrices();
+        }
+    }
+
+    function toggleSwitch(el) {
+        el.classList.toggle('active');
+    }
+
+    function isToggleOn(id) {
+        return document.getElementById(id).classList.contains('active');
+    }
+
+    function toggleOption(optionType) {
+        const idMap = {
+            'saas': 'toggleSaas',
+            'managed': 'toggleManaged',
+            'rawgpu': 'toggleRawGpu'
+        };
+        const toggle = document.getElementById(idMap[optionType]);
+        const options = document.getElementById(`${optionType}Options`);
+
+        if (!toggle || !options) return;
+
+        toggle.classList.toggle('active');
+
+        if (toggle.classList.contains('active')) {
+            options.style.opacity = '1';
+            options.style.pointerEvents = 'auto';
+        } else {
+            options.style.opacity = '0.5';
+            options.style.pointerEvents = 'none';
+        }
+    }
+
+    function isOptionEnabled(optionType) {
+        const idMap = {
+            'saas': 'toggleSaas',
+            'managed': 'toggleManaged',
+            'rawgpu': 'toggleRawGpu'
+        };
+        const element = document.getElementById(idMap[optionType]);
+        return element ? element.classList.contains('active') : false;
+    }
+
+    function nextStep() {
+        if (currentStep < 6) {
+            updateStepIndicator(currentStep, 'completed');
+            currentStep++;
+            updateStepIndicator(currentStep, 'active');
+            showStep(currentStep);
+
+            if (currentStep === 4) {
+                updateModelPrices();
+            }
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 1) {
+            updateStepIndicator(currentStep, '');
+            currentStep--;
+            updateStepIndicator(currentStep, 'active');
+            showStep(currentStep);
+        }
+    }
+
+    function showStep(step) {
+        // Hide all steps
+        for (let i = 1; i <= 6; i++) {
+            const content = document.getElementById(`stepContent${i}`);
+            if (content) {
+                content.classList.add('hidden');
+            }
+        }
+
+        // Show current step
+        const currentContent = document.getElementById(`stepContent${step}`);
+        if (currentContent) {
+            currentContent.classList.remove('hidden');
+            currentContent.classList.add('slide-in');
+        }
+    }
+
+    function updateStepIndicator(step, state) {
+        const indicator = document.getElementById(`step${step}`);
+        indicator.classList.remove('active', 'completed');
+        if (state) {
+            indicator.classList.add(state);
+        }
+    }
+
+    function calculateResults() {
+        try {
+            const inputs = getInputs();
+
+            console.log('Inputs collected:', inputs); // Debug log
+
+            // Validation - ensure at least one option is enabled
+            const enabledOptions = ['saas', 'managed', 'rawgpu'].filter(opt => isOptionEnabled(opt));
+            if (enabledOptions.length === 0) {
+                alert('Please enable at least one option to compare.');
+                return;
+            }
+
+            if (inputs.dailyRequests === 0) {
+                alert('Please enter a value greater than 0 for daily requests.');
+                return;
+            }
+
+        // Calculate costs for enabled options
+        const results = {};
+
+        if (isOptionEnabled('saas')) {
+            if (inputs.saasConfigs.length === 0) {
+                alert('Please select at least one SaaS model.');
+                return;
+            }
+
+            console.log('Processing SaaS configurations:', inputs.saasConfigs);
+
+            // Calculate for each SaaS configuration
+            inputs.saasConfigs.forEach(config => {
+                try {
+                    const key = `saas${config.configNum}`;
+                    results[key] = {
+                        cost: calcSaaS(inputs.dailyRequests, inputs.inputTokens, inputs.outputTokens, config.model),
+                        supported: true,
+                        type: 'saas',
+                        configNum: config.configNum,
+                        model: config.model,
+                        hipaa: config.hipaa
+                    };
+                    console.log(`SaaS config ${config.configNum} calculated:`, results[key]);
+                } catch (error) {
+                    console.error(`Error calculating SaaS config ${config.configNum}:`, error);
+                }
+            });
+        }
+
+        if (isOptionEnabled('managed')) {
+            if (inputs.managedConfigs.length === 0) {
+                alert('Please select at least one managed model.');
+                return;
+            }
+
+            console.log('Processing Managed configurations:', inputs.managedConfigs);
+
+            // Calculate for each Managed configuration
+            inputs.managedConfigs.forEach(config => {
+                try {
+                    const key = `managed${config.configNum}`;
+                    results[key] = {
+                        cost: calcManaged(inputs.dailyRequests, inputs.inputTokens, inputs.outputTokens, config.model),
+                        supported: true,
+                        type: 'managed',
+                        configNum: config.configNum,
+                        model: config.model,
+                        hipaa: config.hipaa
+                    };
+                    console.log(`Managed config ${config.configNum} calculated:`, results[key]);
+                } catch (error) {
+                    console.error(`Error calculating Managed config ${config.configNum}:`, error);
+                }
+            });
+        }
+
+        if (isOptionEnabled('rawgpu')) {
+            if (inputs.rawGpuConfigs.length === 0) {
+                alert('Please select at least one GPU Provider and GPU Offering.');
+                return;
+            }
+
+            console.log('Processing Raw GPU configurations:', inputs.rawGpuConfigs);
+
+            // Calculate for each Raw GPU configuration
+            inputs.rawGpuConfigs.forEach(config => {
+                try {
+                    // Create a temporary inputs object for this specific configuration
+                    const configInputs = {
+                        ...inputs,
+                        gpuOffering: config.gpuOffering,
+                        inferenceServer: config.inferenceServer,
+                        commitmentDiscount: config.commitmentDiscount,
+                        engineeringPct: config.engineeringPct,
+                        toggleHA: config.toggleHA,
+                        toggleMonitoring: config.toggleMonitoring
+                    };
+
+                    const rawResult = calcSelfHosted(configInputs);
+                    const key = `rawgpu${config.configNum}`;
+                    results[key] = {
+                        ...rawResult,
+                        type: 'rawgpu',  // Explicitly set the type
+                        configNum: config.configNum,
+                        gpuOffering: config.gpuOffering,
+                        inferenceServer: config.inferenceServer,
+                        commitmentDiscount: config.commitmentDiscount,
+                        engineeringPct: config.engineeringPct,
+                        toggleHA: config.toggleHA,
+                        toggleMonitoring: config.toggleMonitoring
+                    };
+                    console.log(`Raw GPU config ${config.configNum} calculated:`, results[key]);
+                } catch (error) {
+                    console.error(`Error calculating Raw GPU config ${config.configNum}:`, error);
+                }
+            });
+        }
+
+        console.log('Results calculated:', results); // Debug log
+
+        // Debug: Check each result's structure
+        Object.entries(results).forEach(([key, result]) => {
+            console.log(`Result ${key}:`, {
+                type: result.type,
+                configNum: result.configNum,
+                supported: result.supported,
+                hasModel: result.model ? 'yes' : 'no'
+            });
+
+            // Warn about missing type
+            if (!result.type) {
+                console.warn(`Missing type for result ${key}!`, result);
+            }
+        });
+
+        // Ensure we have at least some valid results
+        const validResults = Object.values(results).filter(r => r.type && r.supported);
+        if (validResults.length === 0) {
+            alert('No valid configuration results were generated. Please check your settings.');
+            return;
+        }
+
+        // Update cost cards display
+        try {
+            updateCostCards(results, inputs);
+            console.log('Cost cards updated successfully');
+        } catch (error) {
+            console.error('Error in updateCostCards:', error);
+            alert('Error updating cost cards: ' + error.message);
+        }
+
+        // Render verdict
+        try {
+            renderVerdict(results, inputs);
+            console.log('Verdict rendered successfully');
+        } catch (error) {
+            console.error('Error in renderVerdict:', error);
+            alert('Error rendering verdict: ' + error.message);
+        }
+
+        // Render calculation breakdown
+        try {
+            renderCalculationBreakdown(inputs, results);
+            console.log('Breakdown rendered successfully');
+        } catch (error) {
+            console.error('Error in renderCalculationBreakdown:', error);
+            alert('Error rendering breakdown: ' + error.message);
+        }
+
+        // Update chart
+        try {
+            renderLineChart(inputs, results);
+            console.log('Chart updated successfully');
+        } catch (error) {
+            console.error('Error in renderLineChart:', error);
+            alert('Error updating chart: ' + error.message);
+        }
+
+        // Go to results
+        try {
+            nextStep();
+        } catch (error) {
+            console.error('Error in nextStep:', error);
+            alert('Error going to results: ' + error.message);
+        }
+
+        } catch (error) {
+            console.error('Error in calculateResults:', error);
+            alert('Calculation error: ' + error.message + '\nCheck the console for more details.');
+        }
+    }
+
+    function getInputs() {
+        // Collect SaaS configurations
+        const saasConfigs = [];
+        for (let configNum = 1; configNum <= saasConfigCount; configNum++) {
+            const saasModelEl = document.getElementById(`saasModel${configNum}`);
+            const saasHipaaToggle = document.getElementById(`toggleSaasHipaa${configNum}`);
+
+            if (saasModelEl && saasModelEl.value) {
+                saasConfigs.push({
+                    model: saasModelEl.value,
+                    hipaa: saasHipaaToggle ? saasHipaaToggle.classList.contains('active') : false,
+                    configNum: configNum
+                });
+            }
+        }
+
+        // Collect Managed configurations
+        const managedConfigs = [];
+        for (let configNum = 1; configNum <= managedConfigCount; configNum++) {
+            const managedModelEl = document.getElementById(`managedModel${configNum}`);
+            const managedHipaaToggle = document.getElementById(`toggleManagedHipaa${configNum}`);
+
+            if (managedModelEl && managedModelEl.value) {
+                managedConfigs.push({
+                    model: managedModelEl.value,
+                    hipaa: managedHipaaToggle ? managedHipaaToggle.classList.contains('active') : false,
+                    configNum: configNum
+                });
+            }
+        }
+
+        // Collect Raw GPU configurations
+        const rawGpuConfigs = [];
+        for (let configNum = 1; configNum <= rawgpuConfigCount; configNum++) {
+            const gpuOfferingEl = document.getElementById(`gpuOffering${configNum}`);
+            const inferenceServerEl = document.getElementById(`inferenceServer${configNum}`);
+            const commitmentDiscountEl = document.getElementById(`commitmentDiscount${configNum}`);
+            const engineeringPctEl = document.getElementById(`engineeringPct${configNum}`);
+            const toggleHAEl = document.getElementById(`toggleHA${configNum}`);
+            const toggleMonitoringEl = document.getElementById(`toggleMonitoring${configNum}`);
+
+            if (gpuOfferingEl && gpuOfferingEl.value) {
+                rawGpuConfigs.push({
+                    gpuOffering: gpuOfferingEl.value,
+                    inferenceServer: inferenceServerEl ? inferenceServerEl.value : '',
+                    commitmentDiscount: parseFloat(commitmentDiscountEl?.value || 30),
+                    engineeringPct: parseFloat(engineeringPctEl?.value || 0),
+                    toggleHA: toggleHAEl ? toggleHAEl.classList.contains('active') : false,
+                    toggleMonitoring: toggleMonitoringEl ? toggleMonitoringEl.classList.contains('active') : false,
+                    configNum: configNum
+                });
+            }
+        }
+
+        return {
+            timePeriod: parseInt(document.getElementById('timePeriod').value) || 36,
+            dailyRequests: parseInt(document.getElementById('dailyRequests').value) || 0,
+            inputTokens: parseInt(document.getElementById('inputTokens').value) || 0,
+            outputTokens: parseInt(document.getElementById('outputTokens').value) || 0,
+            growthRate: parseFloat(document.getElementById('growthRate').value) || 0,
+
+            // Multiple configurations arrays
+            saasConfigs: saasConfigs,
+            managedConfigs: managedConfigs,
+            rawGpuConfigs: rawGpuConfigs,
+
+            // Deployment toggles
+            toggleSaas: isOptionEnabled('saas'),
+            toggleManaged: isOptionEnabled('managed'),
+            toggleRawGpu: isOptionEnabled('rawgpu'),
+
+            // Legacy single configuration support (for backwards compatibility)
+            saasModel: saasConfigs.length > 0 ? saasConfigs[0].model : '',
+            managedModel: managedConfigs.length > 0 ? managedConfigs[0].model : '',
+            gpuOffering: rawGpuConfigs.length > 0 ? rawGpuConfigs[0].gpuOffering : '',
+            inferenceServer: rawGpuConfigs.length > 0 ? rawGpuConfigs[0].inferenceServer : '',
+            commitmentDiscount: rawGpuConfigs.length > 0 ? rawGpuConfigs[0].commitmentDiscount : 30,
+            engineeringPct: rawGpuConfigs.length > 0 ? rawGpuConfigs[0].engineeringPct : 0,
+            saasHipaa: saasConfigs.length > 0 ? saasConfigs[0].hipaa : false,
+            managedHipaa: managedConfigs.length > 0 ? managedConfigs[0].hipaa : false,
+            toggleHA: rawGpuConfigs.length > 0 ? rawGpuConfigs[0].toggleHA : false,
+            toggleMonitoring: rawGpuConfigs.length > 0 ? rawGpuConfigs[0].toggleMonitoring : false,
+        };
+    }
+
+    function calcSaaS(dailyReqs, inputTok, outputTok, modelKey) {
+        const p = PRICING_DB.saas[modelKey];
+        if (!p || dailyReqs === 0) return 0;
+        const mr = dailyReqs * 30;
+        return (mr * inputTok / 1e6) * p.input + (mr * outputTok / 1e6) * p.output;
+    }
+
+    function calcManaged(dailyReqs, inputTok, outputTok, modelKey) {
+        const p = PRICING_DB.managed[modelKey];
+        if (!p || dailyReqs === 0) return 0;
+        const mr = dailyReqs * 30;
+        return (mr * inputTok / 1e6) * p.input + (mr * outputTok / 1e6) * p.output;
+    }
+
+    function getLargestSupportedModel(gpuType) {
+        const quantization = 'int4';
+        const modelSizes = ['405b', '70b', '13b', '7b'];
+
+        for (const size of modelSizes) {
+            const minGPUs = MIN_GPUS[gpuType]?.[size]?.[quantization];
+            if (minGPUs && minGPUs > 0) {
+                return size;
+            }
+        }
+        return '7b'; // fallback to smallest model
+    }
+
+    function calcSelfHosted(inputs) {
+        const gpu = PRICING_DB.gpus[inputs.gpuOffering];
+        if (!gpu) {
+            return {
+                supported: false,
+                error: `Please select a GPU offering.`,
+                total: Infinity
+            };
+        }
+
+        const gpuType = gpu.type;
+        const { commitmentDiscount, engineeringPct } = inputs;
+
+        // Since model size is not selected, choose the largest model size this GPU can handle
+        const modelSize = getLargestSupportedModel(gpuType);
+
+        // Raw GPU specific operational requirements
+        const ha = inputs.toggleHA;
+        const monitoring = inputs.toggleMonitoring;
+        const hipaa = false; // HIPAA compliance can be handled through provider selection
+
+        // Use INT4 quantization by default for cost optimization
+        const quantization = 'int4';
+
+        const minGPUs = MIN_GPUS[gpuType]?.[modelSize]?.[quantization];
+        const throughput = THROUGHPUT[gpuType]?.[modelSize]?.[quantization];
+
+        if (minGPUs === 0 || minGPUs == null || throughput === null || throughput == null) {
+            return {
+                supported: false,
+                error: `${gpu.name} (${gpuType}) cannot run ${modelSize.toUpperCase()} efficiently with ${quantization} quantization. This may indicate an older/smaller GPU type.`,
+                total: Infinity
+            };
+        }
+
+        // Calculate required throughput (simplified)
+        const totalOutputPerDay = inputs.dailyRequests * inputs.outputTokens;
+        const requiredTPS = inputs.dailyRequests === 0 ? 0 : (totalOutputPerDay / 86400) * 1.2;
+
+        let unitsForThroughput = requiredTPS === 0 ? 1 : Math.ceil(requiredTPS / throughput);
+        let totalGPUs = unitsForThroughput * minGPUs;
+
+        if (ha) { totalGPUs *= 2; unitsForThroughput *= 2; }
+
+        let gpuMonthlyCost = totalGPUs * gpu.hourly * 730;
+        let discount = 1.0 - (commitmentDiscount / 100);
+        if (!gpu.reservable && commitmentDiscount > 0) discount = 1.0; // Some providers don't offer commitment discounts
+        gpuMonthlyCost *= discount;
+
+        const engineeringCost = (120000 * engineeringPct) / 12;
+        const monitoringCost = monitoring ? 350 : 0;
+        const complianceCost = hipaa ? 2000 : 0;
+        const storageGB = MODEL_STORAGE_GB[modelSize] * QUANT_FACTOR[quantization];
+        const storageCost = storageGB * 0.10;
+        const monthlyOutputTokens = inputs.dailyRequests * 30 * inputs.outputTokens;
+        const egressGB = (monthlyOutputTokens * 4) / (1024 * 1024 * 1024);
+        const egressCost = egressGB * 0.08;
+        const infraCost = 200 + (unitsForThroughput * 50);
+
+        // Inference server license cost
+        const serverInfo = PRICING_DB.inferenceServers[inputs.inferenceServer] || PRICING_DB.inferenceServers['vllm'];
+        const licenseCost = totalGPUs * serverInfo.perGpuMonth;
+
+        const total = gpuMonthlyCost + engineeringCost + monitoringCost + complianceCost + storageCost + egressCost + infraCost + licenseCost;
+
+        return {
+            supported: true, totalGPUs, modelSize,
+            servingUnits: unitsForThroughput / (ha ? 2 : 1),
+            throughputPerUnit: throughput, requiredTPS,
+            gpuCost: gpuMonthlyCost, engineeringCost, monitoringCost, complianceCost,
+            storageCost, storageGB, egressCost, infraCost, licenseCost,
+            serverName: serverInfo.name, serverLicense: serverInfo.license,
+            discount, commitmentDiscount, reservable: gpu.reservable, total
+        };
+    }
+
+    function renderVerdict(results, inputs) {
+        const costs = [];
+
+        Object.entries(results).forEach(([resultKey, result]) => {
+            if (result.supported && result.type) {
+                let name = '';
+                const { type, configNum } = result;
+
+                // Generate descriptive name based on type and configuration
+                if (type === 'saas') {
+                    const saasModel = PRICING_DB.saas[result.model];
+                    name = saasModel ? `${saasModel.provider} ${saasModel.name}` : 'SaaS API';
+                    if (configNum > 1) name += ` (Config ${configNum})`;
+                } else if (type === 'managed') {
+                    const managedModel = PRICING_DB.managed[result.model];
+                    name = managedModel ? `${managedModel.provider} ${managedModel.name}` : 'Managed Model';
+                    if (configNum > 1) name += ` (Config ${configNum})`;
+                } else if (type === 'rawgpu') {
+                    name = `Raw GPU: ${result.modelSize?.toUpperCase() || 'GPU'} + ${result.serverName}`;
+                    if (configNum > 1) name += ` (Config ${configNum})`;
+                }
+
+                costs.push({
+                    name: name,
+                    cost: result.cost !== undefined ? result.cost : result.total,
+                    type: type,
+                    resultKey: resultKey
+                });
+            }
+        });
+
+        if (costs.length === 0) {
+            document.getElementById('verdictText').innerHTML = '<span class="text-yellow-400">No valid configurations found.</span>';
+            return;
+        }
+
+        costs.sort((a, b) => a.cost - b.cost);
+        const best = costs[0];
+        const worst = costs[costs.length - 1];
+
+        let message;
+        if (costs.length === 1) {
+            message = `<strong>${best.name}</strong> is your only option at <strong>${formatCurrency(best.cost)}/mo</strong>.`;
+        } else {
+            const savings = worst.cost - best.cost;
+            message = `<strong>${best.name} wins!</strong> Cheapest at <strong>${formatCurrency(best.cost)}/mo</strong>, saving <strong>${formatCurrency(savings)}/mo</strong> vs the most expensive option.`;
+
+            // Show ranking if more than 2 options
+            if (costs.length > 2) {
+                message += '<br><div class="mt-2 text-xs text-gray-600">Ranking: ';
+                costs.forEach((cost, index) => {
+                    message += `${index + 1}. ${cost.name} (${formatCurrency(cost.cost)}/mo)`;
+                    if (index < costs.length - 1) message += ' • ';
+                });
+                message += '</div>';
+            }
+        }
+
+        // Crossover point analysis
+        if (results.rawgpu && results.rawgpu.supported && best.type !== 'rawgpu') {
+            const crossoverRequests = findCrossoverPoint(inputs, 'rawgpu', best.type);
+            if (crossoverRequests) {
+                message += `<br><div class="mt-2 text-xs text-blue-600"><strong>Strategic Insight:</strong> Raw GPUs become the cheapest option at ~<strong>${crossoverRequests.toLocaleString()}</strong> daily requests.</div>`;
+            }
+        }
+
+
+        // Add warnings for unsupported configs
+        if (results.rawgpu && !results.rawgpu.supported) {
+            message += `<br><span class="text-yellow-400 text-xs mt-1 inline-block">Note: Raw GPU configuration not supported with current settings.</span>`;
+        }
+
+        document.getElementById('verdictText').innerHTML = message;
+    }
+
+    function findCrossoverPoint(baseInputs, cheaperOptionType, expensiveOptionType) {
+        let low = baseInputs.dailyRequests;
+        let high = 500000; // A reasonable upper bound
+        let mid = 0;
+        let crossover = null;
+
+        const getCost = (reqs, type) => {
+            const tempInputs = { ...baseInputs, dailyRequests: reqs };
+            if (type === 'rawgpu') {
+                const result = calcSelfHosted(tempInputs);
+                return result.supported ? result.total : Infinity;
+            } else if (type === 'saas') {
+                return calcSaaS(reqs, tempInputs.inputTokens, tempInputs.outputTokens, tempInputs.saasModel);
+            } else if (type === 'managed') {
+                return calcManaged(reqs, tempInputs.inputTokens, tempInputs.outputTokens, tempInputs.managedModel);
+            }
+            return Infinity;
+        };
+
+        // Check if a crossover is even possible
+        if (getCost(high, cheaperOptionType) > getCost(high, expensiveOptionType)) {
+            return null; // Cheaper option never becomes cheaper
+        }
+
+        for(let i = 0; i < 15; i++) { // 15 iterations for precision
+            mid = Math.floor((low + high) / 2);
+            if (mid === 0) return null;
+
+            const cheaperCost = getCost(mid, cheaperOptionType);
+            const expensiveCost = getCost(mid, expensiveOptionType);
+
+            if (cheaperCost < expensiveCost) {
+                crossover = mid;
+                high = mid;
+            } else {
+                low = mid;
+            }
+        }
+
+        return crossover ? Math.round(crossover / 1000) * 1000 : null; // Return a rounded number
+    }
+
+    function getSaasBreakdownHTML(inputs, totalCost, showMonthly = false, modelKey = null) {
+        const saasModel = PRICING_DB.saas[modelKey || inputs.saasModel];
+
+        if (!showMonthly) {
+            // Summary view
+            const monthlyRequests = inputs.dailyRequests * 30;
+            const monthlyInputTokens = monthlyRequests * inputs.inputTokens;
+            const monthlyOutputTokens = monthlyRequests * inputs.outputTokens;
+            const inputCost = (monthlyInputTokens / 1e6) * saasModel.input;
+            const outputCost = (monthlyOutputTokens / 1e6) * saasModel.output;
+
+            return `
+                <div class="bg-gray-100 rounded p-3">
+                    <div class="font-medium text-red-300 mb-2">${saasModel.provider} ${saasModel.name}</div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between"><span>Monthly Requests:</span><span class="text-gray-100">${monthlyRequests.toLocaleString()}</span></div>
+                        <div class="flex justify-between"><span>Input Tokens/month:</span><span class="text-gray-100">${(monthlyInputTokens/1e6).toFixed(2)}M @ $${saasModel.input}/M</span></div>
+                        <div class="flex justify-between"><span>Input Cost:</span><span class="text-gray-100">${formatCurrency(inputCost)}</span></div>
+                        <div class="flex justify-between"><span>Output Tokens/month:</span><span class="text-gray-100">${(monthlyOutputTokens/1e6).toFixed(2)}M @ $${saasModel.output}/M</span></div>
+                        <div class="flex justify-between"><span>Output Cost:</span><span class="text-gray-100">${formatCurrency(outputCost)}</span></div>
+                        <div class="border-t border-gray-300 pt-1 mt-2">
+                            <div class="flex justify-between font-medium"><span>Average Monthly Cost:</span><span class="text-red-300">${formatCurrency(totalCost)}</span></div>
+                        </div>
+                    </div>
+                </div>`;
+        } else {
+            // Monthly detailed view
+            const g = 1 + (inputs.growthRate / 100);
+            const timePeriod = inputs.timePeriod || 36;
+            let monthlyHTML = `
+                <div class="bg-gray-100 rounded p-3">
+                    <div class="font-medium text-red-300 mb-3">${saasModel.provider} ${saasModel.name} - Monthly Projection</div>
+                    <div class="max-h-64 overflow-y-auto">
+                        <table class="w-full text-xs">
+                            <thead class="sticky top-0 bg-white">
+                                <tr class="border-b border-gray-300">
+                                    <th class="text-left p-2">Month</th>
+                                    <th class="text-right p-2">Requests</th>
+                                    <th class="text-right p-2">Input Cost</th>
+                                    <th class="text-right p-2">Output Cost</th>
+                                    <th class="text-right p-2">Total</th>
+                                    <th class="text-right p-2">Cumulative</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+            let cumulative = 0;
+            for (let i = 0; i < timePeriod; i++) {
+                const monthlyRequests = Math.round(inputs.dailyRequests * 30 * Math.pow(g, i));
+                const inputTokens = monthlyRequests * inputs.inputTokens;
+                const outputTokens = monthlyRequests * inputs.outputTokens;
+                const inputCost = (inputTokens / 1e6) * saasModel.input;
+                const outputCost = (outputTokens / 1e6) * saasModel.output;
+                const monthlyCost = inputCost + outputCost;
+                cumulative += monthlyCost;
+
+                monthlyHTML += `
+                    <tr class="border-b border-gray-300 hover:bg-gray-600/30">
+                        <td class="p-2">M${i + 1}</td>
+                        <td class="p-2 text-right">${monthlyRequests.toLocaleString()}</td>
+                        <td class="p-2 text-right">${formatCurrency(inputCost)}</td>
+                        <td class="p-2 text-right">${formatCurrency(outputCost)}</td>
+                        <td class="p-2 text-right font-medium text-red-300">${formatCurrency(monthlyCost)}</td>
+                        <td class="p-2 text-right text-gray-600">${formatCurrency(cumulative)}</td>
+                    </tr>`;
+            }
+
+            monthlyHTML += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>`;
+            return monthlyHTML;
+        }
+    }
+
+    function getManagedBreakdownHTML(inputs, totalCost, showMonthly = false, modelKey = null) {
+        const managedModel = PRICING_DB.managed[modelKey || inputs.managedModel];
+
+        if (!showMonthly) {
+            // Summary view
+            const monthlyRequests = inputs.dailyRequests * 30;
+            const monthlyInputTokens = monthlyRequests * inputs.inputTokens;
+            const monthlyOutputTokens = monthlyRequests * inputs.outputTokens;
+            const inputCost = (monthlyInputTokens / 1e6) * managedModel.input;
+            const outputCost = (monthlyOutputTokens / 1e6) * managedModel.output;
+
+            return `
+                <div class="bg-gray-100 rounded p-3">
+                    <div class="font-medium text-red-300 mb-2">${managedModel.provider} ${managedModel.name}</div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between"><span>Monthly Requests:</span><span class="text-gray-100">${monthlyRequests.toLocaleString()}</span></div>
+                        <div class="flex justify-between"><span>Input Tokens/month:</span><span class="text-gray-100">${(monthlyInputTokens/1e6).toFixed(2)}M @ $${managedModel.input}/M</span></div>
+                        <div class="flex justify-between"><span>Input Cost:</span><span class="text-gray-100">${formatCurrency(inputCost)}</span></div>
+                        <div class="flex justify-between"><span>Output Tokens/month:</span><span class="text-gray-100">${(monthlyOutputTokens/1e6).toFixed(2)}M @ $${managedModel.output}/M</span></div>
+                        <div class="flex justify-between"><span>Output Cost:</span><span class="text-gray-100">${formatCurrency(outputCost)}</span></div>
+                        <div class="border-t border-gray-300 pt-1 mt-2">
+                            <div class="flex justify-between font-medium"><span>Average Monthly Cost:</span><span class="text-red-300">${formatCurrency(totalCost)}</span></div>
+                        </div>
+                    </div>
+                </div>`;
+        } else {
+            // Monthly detailed view
+            const g = 1 + (inputs.growthRate / 100);
+            const timePeriod = inputs.timePeriod || 36;
+            let monthlyHTML = `
+                <div class="bg-gray-100 rounded p-3">
+                    <div class="font-medium text-red-300 mb-3">${managedModel.provider} ${managedModel.name} - Monthly Projection</div>
+                    <div class="max-h-64 overflow-y-auto">
+                        <table class="w-full text-xs">
+                            <thead class="sticky top-0 bg-white">
+                                <tr class="border-b border-gray-300">
+                                    <th class="text-left p-2">Month</th>
+                                    <th class="text-right p-2">Requests</th>
+                                    <th class="text-right p-2">Input Cost</th>
+                                    <th class="text-right p-2">Output Cost</th>
+                                    <th class="text-right p-2">Total</th>
+                                    <th class="text-right p-2">Cumulative</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+            let cumulative = 0;
+            for (let i = 0; i < timePeriod; i++) {
+                const monthlyRequests = Math.round(inputs.dailyRequests * 30 * Math.pow(g, i));
+                const inputTokens = monthlyRequests * inputs.inputTokens;
+                const outputTokens = monthlyRequests * inputs.outputTokens;
+                const inputCost = (inputTokens / 1e6) * managedModel.input;
+                const outputCost = (outputTokens / 1e6) * managedModel.output;
+                const monthlyCost = inputCost + outputCost;
+                cumulative += monthlyCost;
+
+                monthlyHTML += `
+                    <tr class="border-b border-gray-300 hover:bg-gray-600/30">
+                        <td class="p-2">M${i + 1}</td>
+                        <td class="p-2 text-right">${monthlyRequests.toLocaleString()}</td>
+                        <td class="p-2 text-right">${formatCurrency(inputCost)}</td>
+                        <td class="p-2 text-right">${formatCurrency(outputCost)}</td>
+                        <td class="p-2 text-right font-medium text-red-300">${formatCurrency(monthlyCost)}</td>
+                        <td class="p-2 text-right text-gray-600">${formatCurrency(cumulative)}</td>
+                    </tr>`;
+            }
+
+            monthlyHTML += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>`;
+            return monthlyHTML;
+        }
+    }
+
+    function getRawGpuBreakdownHTML(inputs, result, showMonthly = false) {
+        if (!result.supported) {
+            return `<div class="bg-red-900/30 rounded p-3 border border-red-700">
+                <div class="font-medium text-red-300 mb-2">❌ Configuration Not Supported</div>
+                <div class="text-red-200">${result.error || 'The selected GPU cannot efficiently run the chosen model size.'}</div>
+            </div>`;
+        }
+
+        const gpu = PRICING_DB.gpus[inputs.gpuOffering];
+        const serverInfo = PRICING_DB.inferenceServers[inputs.inferenceServer];
+        const discountText = inputs.commitmentDiscount > 0 ? ` (${inputs.commitmentDiscount}% commitment discount)` : '';
+
+        if (!showMonthly) {
+            // Summary view
+            let breakdown = `<div class="bg-gray-100 rounded p-3">
+                <div class="font-medium text-red-300 mb-2">${gpu.provider} ${gpu.name} - ${result.modelSize.toUpperCase()} (auto-selected)</div>
+                <div class="space-y-1">
+                    <div class="flex justify-between"><span>GPU Configuration:</span><span class="text-gray-100">${result.totalGPUs}x ${gpu.name}</span></div>
+                    <div class="flex justify-between"><span>GPU Cost:</span><span class="text-gray-100">${formatCurrency(result.gpuCost)}${discountText}</span></div>`;
+
+            if (result.engineeringCost > 0) breakdown += `<div class="flex justify-between"><span>Engineering (${(inputs.engineeringPct*100)}%):</span><span class="text-gray-100">${formatCurrency(result.engineeringCost)}</span></div>`;
+            if (result.licenseCost > 0) breakdown += `<div class="flex justify-between"><span>Inference Server (${serverInfo.name}):</span><span class="text-gray-100">${formatCurrency(result.licenseCost)}</span></div>`;
+            if (result.monitoringCost > 0) breakdown += `<div class="flex justify-between"><span>Monitoring:</span><span class="text-gray-100">${formatCurrency(result.monitoringCost)}</span></div>`;
+            if (result.complianceCost > 0) breakdown += `<div class="flex justify-between"><span>HIPAA/SOC2:</span><span class="text-gray-100">${formatCurrency(result.complianceCost)}</span></div>`;
+
+            breakdown += `<div class="flex justify-between"><span>Infrastructure:</span><span class="text-gray-100">${formatCurrency(result.infraCost)}</span></div>
+                    <div class="flex justify-between"><span>Storage (${result.storageGB.toFixed(1)}GB):</span><span class="text-gray-100">${formatCurrency(result.storageCost)}</span></div>
+                    <div class="flex justify-between"><span>Starting Egress:</span><span class="text-gray-100">${formatCurrency(result.egressCost)}</span></div>
+                    <div class="border-t border-gray-300 pt-1 mt-2">
+                        <div class="flex justify-between font-medium"><span>Average Monthly Cost:</span><span class="text-red-300">${formatCurrency(result.total)}</span></div>
+                    </div>
+                </div>
+            </div>`;
+
+            return breakdown;
+        } else {
+            // Monthly detailed view
+            const g = 1 + (inputs.growthRate / 100);
+            const timePeriod = inputs.timePeriod || 36;
+
+            // Fixed costs (don't grow with traffic)
+            const fixedCosts = result.gpuCost + result.engineeringCost + result.licenseCost +
+                             result.monitoringCost + result.complianceCost + result.infraCost + result.storageCost;
+
+            let monthlyHTML = `
+                <div class="bg-gray-100 rounded p-3">
+                    <div class="font-medium text-red-300 mb-3">${gpu.provider} ${gpu.name} - ${result.modelSize.toUpperCase()} Monthly Projection</div>
+                    <div class="max-h-64 overflow-y-auto">
+                        <table class="w-full text-xs">
+                            <thead class="sticky top-0 bg-white">
+                                <tr class="border-b border-gray-300">
+                                    <th class="text-left p-2">Month</th>
+                                    <th class="text-right p-2">Requests</th>
+                                    <th class="text-right p-2">Fixed Costs</th>
+                                    <th class="text-right p-2">Egress</th>
+                                    <th class="text-right p-2">Total</th>
+                                    <th class="text-right p-2">Cumulative</th>
+                                </tr>
+                            </thead>
+                            <tbody>`;
+
+            let cumulative = 0;
+            for (let i = 0; i < timePeriod; i++) {
+                const monthlyRequests = Math.round(inputs.dailyRequests * 30 * Math.pow(g, i));
+                const monthlyOutputTokens = monthlyRequests * inputs.outputTokens;
+                const egressGB = (monthlyOutputTokens * 4) / (1024 * 1024 * 1024);
+                const egressCost = egressGB * 0.08;
+                const monthlyCost = fixedCosts + egressCost;
+                cumulative += monthlyCost;
+
+                monthlyHTML += `
+                    <tr class="border-b border-gray-300 hover:bg-gray-600/30">
+                        <td class="p-2">M${i + 1}</td>
+                        <td class="p-2 text-right">${monthlyRequests.toLocaleString()}</td>
+                        <td class="p-2 text-right">${formatCurrency(fixedCosts)}</td>
+                        <td class="p-2 text-right">${formatCurrency(egressCost)}</td>
+                        <td class="p-2 text-right font-medium text-red-300">${formatCurrency(monthlyCost)}</td>
+                        <td class="p-2 text-right text-gray-600">${formatCurrency(cumulative)}</td>
+                    </tr>`;
+            }
+
+            monthlyHTML += `
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-3 text-xs text-gray-600">
+                        <p><strong>Fixed Costs Include:</strong> GPU (${formatCurrency(result.gpuCost)})`;
+            if (result.engineeringCost > 0) monthlyHTML += `, Engineering (${formatCurrency(result.engineeringCost)})`;
+            if (result.licenseCost > 0) monthlyHTML += `, Inference Server (${formatCurrency(result.licenseCost)})`;
+            if (result.monitoringCost > 0) monthlyHTML += `, Monitoring (${formatCurrency(result.monitoringCost)})`;
+            if (result.complianceCost > 0) monthlyHTML += `, HIPAA/SOC2 (${formatCurrency(result.complianceCost)})`;
+            monthlyHTML += `, Infrastructure (${formatCurrency(result.infraCost)}), Storage (${formatCurrency(result.storageCost)})</p>`;
+            monthlyHTML += `</div></div>`;
+
+            return monthlyHTML;
+        }
+    }
+
+    function initChart() {
+        const months = Array.from({ length: 12 }, (_, i) => `M${i + 1}`);
+        lineChart = new Chart(document.getElementById('lineChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: '#9ca3af', font: { size: 12 } } }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(55,65,81,0.3)' },
+                        ticks: {
+                            color: '#9ca3af',
+                            callback: v => '$' + (v >= 1000000 ? (v/1000000).toFixed(1) + 'M' : v >= 1000 ? (v/1000).toFixed(1) + 'k' : v.toFixed(0))
+                        }
+                    },
+                    x: {
+                        grid: { color: 'rgba(55,65,81,0.2)' },
+                        ticks: {
+                            color: '#9ca3af',
+                            maxTicksLimit: 12
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderLineChart(inputs, results) {
+        const g = 1 + (inputs.growthRate / 100);
+        const timePeriod = inputs.timePeriod || 36;
+
+        // Update chart title
+        const years = Math.floor(timePeriod / 12);
+        const months = timePeriod % 12;
+        let titleText = '';
+        if (years > 0) {
+            titleText += `${years}-Year`;
+            if (months > 0) titleText += ` ${months}-Month`;
+        } else {
+            titleText = `${timePeriod}-Month`;
+        }
+        titleText += ' Projection';
+        document.getElementById('chartTitle').textContent = titleText;
+
+        // Generate labels
+        const labels = Array.from({ length: timePeriod }, (_, i) => {
+            if (timePeriod <= 12) {
+                return `M${i + 1}`;
+            } else {
+                const year = Math.floor(i / 12) + 1;
+                const month = (i % 12) + 1;
+                return `Y${year}M${month}`;
+            }
+        });
+
+        // Generate datasets for each configuration
+        const datasets = [];
+        const baseColors = {
+            saas: ['#dc2626', '#ef4444', '#f87171'],
+            managed: ['#16a34a', '#22c55e', '#4ade80'],
+            rawgpu: ['#2563eb', '#3b82f6', '#60a5fa']
+        };
+
+        Object.entries(results).forEach(([resultKey, result]) => {
+            if (!result.supported) return;
+
+            const { type, configNum } = result;
+
+            // Skip if type is undefined
+            if (!type || !baseColors[type]) {
+                console.error('Invalid result type for chart:', resultKey, result);
+                return;
+            }
+
+            const colorIndex = Math.max(0, (configNum - 1) % 3); // Ensure valid index
+            const borderColor = baseColors[type][colorIndex] || baseColors[type][0];
+
+            // Generate label based on configuration
+            let label = '';
+            if (type === 'saas') {
+                const saasModel = PRICING_DB.saas[result.model];
+                label = saasModel ? `${saasModel.provider} ${saasModel.name}` : 'SaaS API';
+                if (configNum > 1) label += ` (${configNum})`;
+            } else if (type === 'managed') {
+                const managedModel = PRICING_DB.managed[result.model];
+                label = managedModel ? `${managedModel.provider} ${managedModel.name}` : 'Managed Model';
+                if (configNum > 1) label += ` (${configNum})`;
+            } else if (type === 'rawgpu') {
+                label = `Raw GPU: ${result.modelSize?.toUpperCase() || 'GPU'}`;
+                if (configNum > 1) label += ` (${configNum})`;
+            }
+
+            const data = [];
+            for (let i = 0; i < timePeriod; i++) {
+                const r = inputs.dailyRequests * Math.pow(g, i);
+                let cost;
+
+                if (type === 'saas') {
+                    cost = calcSaaS(r, inputs.inputTokens, inputs.outputTokens, result.model);
+                } else if (type === 'managed') {
+                    cost = calcManaged(r, inputs.inputTokens, inputs.outputTokens, result.model);
+                } else if (type === 'rawgpu') {
+                    const monthlyInputs = {
+                        ...inputs,
+                        dailyRequests: r,
+                        gpuOffering: result.gpuOffering,
+                        inferenceServer: result.inferenceServer,
+                        commitmentDiscount: result.commitmentDiscount,
+                        engineeringPct: result.engineeringPct,
+                        toggleHA: result.toggleHA,
+                        toggleMonitoring: result.toggleMonitoring
+                    };
+                    const rawResult = calcSelfHosted(monthlyInputs);
+                    cost = rawResult.supported ? rawResult.total : null;
+                }
+                data.push(cost);
+            }
+
+            datasets.push({
+                label: label,
+                data: data,
+                borderColor: borderColor,
+                backgroundColor: 'transparent',
+                tension: 0.3,
+                pointRadius: 2
+            });
+        });
+
+        lineChart.data.labels = labels;
+        lineChart.data.datasets = datasets;
+        lineChart.update();
+    }
+
+    function formatCurrency(n) {
+        if (n === 0) return '$0';
+        if (n == null || !isFinite(n)) return 'N/A';
+        if (n < 1000) return '$' + n.toFixed(2);
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    }
+
+    function toggleBreakdown() {
+        const breakdown = document.getElementById('calculationBreakdown');
+        const chevron = document.getElementById('breakdownChevron');
+
+        if (breakdown.classList.contains('hidden')) {
+            breakdown.classList.remove('hidden');
+            chevron.style.transform = 'rotate(90deg)';
+        } else {
+            breakdown.classList.add('hidden');
+            chevron.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    function calculateAverageCosts(results, inputs) {
+        const timePeriod = inputs.timePeriod || 36;
+        const g = 1 + (inputs.growthRate / 100);
+        const averageCosts = {};
+
+        Object.entries(results).forEach(([resultKey, result]) => {
+            const { type } = result;
+
+            // Skip if no type or not supported
+            if (!type) {
+                console.error('calculateAverageCosts: No type for result:', resultKey, result);
+                return;
+            }
+
+            if (!result.supported && type === 'rawgpu') return;
+
+            let totalCost = 0;
+            for (let i = 0; i < timePeriod; i++) {
+                const monthlyRequests = inputs.dailyRequests * Math.pow(g, i);
+
+                if (type === 'saas') {
+                    totalCost += calcSaaS(monthlyRequests, inputs.inputTokens, inputs.outputTokens, result.model);
+                } else if (type === 'managed') {
+                    totalCost += calcManaged(monthlyRequests, inputs.inputTokens, inputs.outputTokens, result.model);
+                } else if (type === 'rawgpu' && result.supported) {
+                    // Create config-specific inputs for Raw GPU calculation
+                    const monthlyInputs = {
+                        ...inputs,
+                        dailyRequests: monthlyRequests,
+                        gpuOffering: result.gpuOffering,
+                        inferenceServer: result.inferenceServer,
+                        commitmentDiscount: result.commitmentDiscount,
+                        engineeringPct: result.engineeringPct,
+                        toggleHA: result.toggleHA,
+                        toggleMonitoring: result.toggleMonitoring
+                    };
+                    const monthlyResult = calcSelfHosted(monthlyInputs);
+                    totalCost += monthlyResult.supported ? monthlyResult.total : 0;
+                }
+            }
+            averageCosts[resultKey] = totalCost / timePeriod;
+        });
+
+        return averageCosts;
+    }
+
+    function updateTrafficGrowthSection(inputs, results) {
+        const timePeriod = inputs.timePeriod || 36;
+        const g = 1 + (inputs.growthRate / 100);
+        const startingRequests = inputs.dailyRequests;
+        const endingRequests = Math.round(startingRequests * Math.pow(g, timePeriod - 1));
+
+        // Calculate starting and ending costs for the primary option (first enabled)
+        const firstEnabledType = Object.keys(results)[0];
+        let startingCost = 0, endingCost = 0;
+
+        if (firstEnabledType === 'saas') {
+            startingCost = calcSaaS(startingRequests, inputs.inputTokens, inputs.outputTokens, inputs.saasModel);
+            endingCost = calcSaaS(endingRequests, inputs.inputTokens, inputs.outputTokens, inputs.saasModel);
+        } else if (firstEnabledType === 'managed') {
+            startingCost = calcManaged(startingRequests, inputs.inputTokens, inputs.outputTokens, inputs.managedModel);
+            endingCost = calcManaged(endingRequests, inputs.inputTokens, inputs.outputTokens, inputs.managedModel);
+        } else if (firstEnabledType === 'rawgpu' && results.rawgpu.supported) {
+            const startInputs = { ...inputs, dailyRequests: startingRequests };
+            const endInputs = { ...inputs, dailyRequests: endingRequests };
+            const startResult = calcSelfHosted(startInputs);
+            const endResult = calcSelfHosted(endInputs);
+            startingCost = startResult.supported ? startResult.total : 0;
+            endingCost = endResult.supported ? endResult.total : 0;
+        }
+
+        // Update the display
+        document.getElementById('startingRequests').textContent = `${startingRequests.toLocaleString()} req/day`;
+        document.getElementById('endingRequests').textContent = `${endingRequests.toLocaleString()} req/day`;
+        document.getElementById('startingCost').textContent = formatCurrency(startingCost);
+        document.getElementById('endingCost').textContent = formatCurrency(endingCost);
+
+        const totalIncrease = ((endingCost - startingCost) / startingCost * 100).toFixed(0);
+        const years = Math.floor(timePeriod / 12);
+        const remainingMonths = timePeriod % 12;
+        let timeText = '';
+        if (years > 0) {
+            timeText = `${years} year${years > 1 ? 's' : ''}`;
+            if (remainingMonths > 0) {
+                timeText += `, ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
+            }
+        } else {
+            timeText = `${timePeriod} month${timePeriod > 1 ? 's' : ''}`;
+        }
+        document.getElementById('growthSummary').textContent =
+            `With ${inputs.growthRate}% monthly growth over ${timeText}, costs increase by ${totalIncrease}% due to higher traffic`;
+    }
+
+    function updateCostCards(results, inputs) {
+        const container = document.getElementById('costCardsContainer');
+        const enabledCount = Object.keys(results).length;
+        const averageCosts = calculateAverageCosts(results, inputs);
+
+        // Update traffic growth section
+        updateTrafficGrowthSection(inputs, results);
+
+        // Clear existing cards and create new ones
+        container.innerHTML = '';
+
+        // Set grid layout based on enabled count
+        if (enabledCount === 1) {
+            container.className = 'grid grid-cols-1 max-w-md mx-auto gap-4 mb-6';
+        } else if (enabledCount === 2) {
+            container.className = 'grid grid-cols-1 md:grid-cols-2 gap-4 mb-6';
+        } else if (enabledCount <= 4) {
+            container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6';
+        } else {
+            container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mb-6';
+        }
+
+        // Create cards for all configurations
+        Object.entries(results).forEach(([key, result]) => {
+            // Skip results without proper type
+            if (!result.type) {
+                console.error('Skipping result without type:', key, result);
+                return;
+            }
+
+            const card = createCostCard(key, result, averageCosts[key], inputs);
+            if (card) {
+                container.appendChild(card);
+            }
+        });
+    }
+
+    function createCostCard(resultKey, result, averageCost, inputs) {
+        try {
+            const { type, configNum } = result;
+
+            // Define styling based on type
+            const typeConfig = {
+                saas: {
+                    bgClass: 'bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-300',
+                    titleClass: 'text-red-700',
+                    title: 'SaaS APIs'
+                },
+                managed: {
+                    bgClass: 'bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-300',
+                    titleClass: 'text-orange-700',
+                    title: 'Managed Models'
+                },
+                rawgpu: {
+                    bgClass: 'bg-gradient-to-br from-rose-50 to-rose-100 border-2 border-rose-300',
+                    titleClass: 'text-rose-700',
+                    title: 'Raw GPUs'
+                }
+            };
+
+            const config = typeConfig[type];
+            if (!config) {
+                console.error('Unknown deployment type:', type);
+                return document.createElement('div'); // Return empty div
+            }
+
+            let detailText = '';
+            let costText = formatCurrency(averageCost || 0);
+
+            // Generate detail text based on type
+            if (type === 'saas') {
+                const saasModel = PRICING_DB.saas && PRICING_DB.saas[result.model];
+                detailText = saasModel ? `${saasModel.provider} ${saasModel.name}` : 'Unknown model';
+                if (configNum > 1) detailText += ` (Config ${configNum})`;
+            } else if (type === 'managed') {
+                const managedModel = PRICING_DB.managed && PRICING_DB.managed[result.model];
+                detailText = managedModel ? `${managedModel.provider} ${managedModel.name}` : 'Unknown model';
+                if (configNum > 1) detailText += ` (Config ${configNum})`;
+            } else if (type === 'rawgpu') {
+                if (result.supported) {
+                    detailText = `${result.totalGPUs || 0}x ${result.modelSize?.toUpperCase() || 'GPU'} + ${result.serverName || 'Server'}`;
+                    if (configNum > 1) detailText += ` (Config ${configNum})`;
+                } else {
+                    costText = 'N/A';
+                    detailText = 'Config not supported';
+                }
+            }
+
+            const cardDiv = document.createElement('div');
+            cardDiv.className = `${config.bgClass} rounded-lg p-6 text-center shadow-lg`;
+            cardDiv.innerHTML = `
+                <h3 class="text-sm font-semibold ${config.titleClass} mb-2">${config.title}</h3>
+                <p class="text-3xl font-bold text-gray-900">${costText}</p>
+                <p class="text-xs text-gray-700 mt-2">${detailText}</p>
+                <p class="text-xs text-gray-500 mt-1">(avg/month)</p>
+            `;
+
+            return cardDiv;
+        } catch (error) {
+            console.error('Error creating cost card:', error, 'for result:', result);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'bg-red-100 border border-red-300 rounded-lg p-6 text-center';
+            errorDiv.innerHTML = '<p class="text-red-600 text-sm">Error loading card</p>';
+            return errorDiv;
+        }
+    }
+
+    // Store data globally for download
+    let globalBreakdownData = null;
+
+    function renderCalculationBreakdown(inputs, results) {
+        // Store data for download
+        globalBreakdownData = { inputs, results };
+        updateBreakdownDisplay();
+    }
+
+    function updateBreakdownDisplay() {
+        if (!globalBreakdownData) return;
+
+        const { inputs, results } = globalBreakdownData;
+        const showMonthly = document.getElementById('showMonthlyDetails').checked;
+        let breakdownHTML = '<div class="p-4">';
+
+        // Group results by type
+        const groupedResults = {
+            saas: [],
+            managed: [],
+            rawgpu: []
+        };
+
+        Object.entries(results).forEach(([resultKey, result]) => {
+            if (result.supported && result.type && groupedResults[result.type]) {
+                groupedResults[result.type].push({ resultKey, result });
+            } else if (!result.type) {
+                console.error('updateBreakdownDisplay: No type for result:', resultKey, result);
+            }
+        });
+
+        // Display SaaS configurations
+        if (groupedResults.saas.length > 0) {
+            groupedResults.saas.forEach(({ resultKey, result }, index) => {
+                const saasModel = PRICING_DB.saas[result.model];
+                const title = saasModel ? `${saasModel.provider} ${saasModel.name}` : 'SaaS API';
+                const configTitle = result.configNum > 1 ? ` (Config ${result.configNum})` : '';
+
+                breakdownHTML += '<div class="border-b border-gray-300 pb-4 mb-4">';
+                breakdownHTML += `<h5 class="text-sm font-medium text-red-600 mb-3">SaaS APIs: ${title}${configTitle}</h5>`;
+                breakdownHTML += getSaasBreakdownHTML(inputs, result.cost, showMonthly, result.model);
+                breakdownHTML += '</div>';
+            });
+        }
+
+        // Display Managed configurations
+        if (groupedResults.managed.length > 0) {
+            groupedResults.managed.forEach(({ resultKey, result }, index) => {
+                const managedModel = PRICING_DB.managed[result.model];
+                const title = managedModel ? `${managedModel.provider} ${managedModel.name}` : 'Managed Model';
+                const configTitle = result.configNum > 1 ? ` (Config ${result.configNum})` : '';
+
+                breakdownHTML += '<div class="border-b border-gray-300 pb-4 mb-4">';
+                breakdownHTML += `<h5 class="text-sm font-medium text-orange-600 mb-3">Managed Models: ${title}${configTitle}</h5>`;
+                breakdownHTML += getManagedBreakdownHTML(inputs, result.cost, showMonthly, result.model);
+                breakdownHTML += '</div>';
+            });
+        }
+
+        // Display Raw GPU configurations
+        if (groupedResults.rawgpu.length > 0) {
+            groupedResults.rawgpu.forEach(({ resultKey, result }, index) => {
+                const title = `${result.modelSize?.toUpperCase() || 'GPU'} + ${result.serverName}`;
+                const configTitle = result.configNum > 1 ? ` (Config ${result.configNum})` : '';
+
+                breakdownHTML += '<div class="pb-4">';
+                if (index < groupedResults.rawgpu.length - 1) {
+                    breakdownHTML = breakdownHTML.replace('pb-4">', 'pb-4 mb-4 border-b border-gray-300">');
+                }
+                breakdownHTML += `<h5 class="text-sm font-medium text-rose-600 mb-3">Raw GPU: ${title}${configTitle}</h5>`;
+                breakdownHTML += getRawGpuBreakdownHTML(inputs, result, showMonthly);
+                breakdownHTML += '</div>';
+            });
+        }
+
+        breakdownHTML += '</div>';
+        document.getElementById('calculationBreakdown').innerHTML = breakdownHTML;
+    }
+
+    function renderSaasBreakdown(inputs, totalCost) {
+        const saasModel = PRICING_DB.saas[inputs.saasModel];
+        const monthlyRequests = inputs.dailyRequests * 30;
+        const monthlyInputTokens = monthlyRequests * inputs.inputTokens;
+        const monthlyOutputTokens = monthlyRequests * inputs.outputTokens;
+
+        const inputCost = (monthlyInputTokens / 1e6) * saasModel.input;
+        const outputCost = (monthlyOutputTokens / 1e6) * saasModel.output;
+
+        const breakdown = `
+            <div class="bg-gray-100 rounded p-3">
+                <div class="font-medium text-red-300 mb-2">${saasModel.provider} ${saasModel.name}</div>
+                <div class="space-y-1">
+                    <div class="flex justify-between">
+                        <span>Monthly Requests:</span>
+                        <span class="text-gray-100">${monthlyRequests.toLocaleString()}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Input Tokens/month:</span>
+                        <span class="text-gray-100">${(monthlyInputTokens/1e6).toFixed(2)}M @ $${saasModel.input}/M</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Input Cost:</span>
+                        <span class="text-gray-100">${formatCurrency(inputCost)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Output Tokens/month:</span>
+                        <span class="text-gray-100">${(monthlyOutputTokens/1e6).toFixed(2)}M @ $${saasModel.output}/M</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Output Cost:</span>
+                        <span class="text-gray-100">${formatCurrency(outputCost)}</span>
+                    </div>
+                    <div class="border-t border-gray-300 pt-1 mt-2">
+                        <div class="flex justify-between font-medium">
+                            <span>Total Monthly Cost:</span>
+                            <span class="text-red-300">${formatCurrency(totalCost)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('saasBreakdown').innerHTML = breakdown;
+    }
+
+    function renderManagedBreakdown(inputs, totalCost) {
+        const managedModel = PRICING_DB.managed[inputs.managedModel];
+        const monthlyRequests = inputs.dailyRequests * 30;
+        const monthlyInputTokens = monthlyRequests * inputs.inputTokens;
+        const monthlyOutputTokens = monthlyRequests * inputs.outputTokens;
+
+        const inputCost = (monthlyInputTokens / 1e6) * managedModel.input;
+        const outputCost = (monthlyOutputTokens / 1e6) * managedModel.output;
+
+        const breakdown = `
+            <div class="bg-gray-100 rounded p-3">
+                <div class="font-medium text-red-300 mb-2">${managedModel.provider} ${managedModel.name}</div>
+                <div class="space-y-1">
+                    <div class="flex justify-between">
+                        <span>Monthly Requests:</span>
+                        <span class="text-gray-100">${monthlyRequests.toLocaleString()}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Input Tokens/month:</span>
+                        <span class="text-gray-100">${(monthlyInputTokens/1e6).toFixed(2)}M @ $${managedModel.input}/M</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Input Cost:</span>
+                        <span class="text-gray-100">${formatCurrency(inputCost)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Output Tokens/month:</span>
+                        <span class="text-gray-100">${(monthlyOutputTokens/1e6).toFixed(2)}M @ $${managedModel.output}/M</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Output Cost:</span>
+                        <span class="text-gray-100">${formatCurrency(outputCost)}</span>
+                    </div>
+                    <div class="border-t border-gray-300 pt-1 mt-2">
+                        <div class="flex justify-between font-medium">
+                            <span>Total Monthly Cost:</span>
+                            <span class="text-red-300">${formatCurrency(totalCost)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('cloudBreakdown').innerHTML = breakdown;
+    }
+
+    function renderRawGpuBreakdown(inputs, cloudResult) {
+        if (!cloudResult.supported) {
+            document.getElementById('cloudBreakdown').innerHTML = `
+                <div class="bg-red-900/30 rounded p-3 border border-red-700">
+                    <div class="font-medium text-red-300 mb-2">❌ Configuration Not Supported</div>
+                    <div class="text-red-200">${cloudResult.error || 'The selected GPU cannot efficiently run the chosen model size.'}</div>
+                </div>
+            `;
+            return;
+        }
+
+        const gpu = PRICING_DB.gpus[inputs.gpuOffering];
+        const serverInfo = PRICING_DB.inferenceServers[inputs.inferenceServer];
+        const discountText = inputs.commitmentDiscount > 0 ? ` (${inputs.commitmentDiscount}% commitment discount)` : '';
+
+        const breakdown = `
+            <div class="bg-gray-100 rounded p-3">
+                <div class="font-medium text-red-300 mb-2">${gpu.provider} ${gpu.name} - ${result.modelSize.toUpperCase()} (auto-selected)</div>
+                <div class="space-y-1">
+                    <div class="flex justify-between">
+                        <span>GPU Configuration:</span>
+                        <span class="text-gray-100">${cloudResult.totalGPUs}x ${gpu.name}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>GPU Cost:</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.gpuCost)}${discountText}</span>
+                    </div>
+                    ${cloudResult.engineeringCost > 0 ? `
+                    <div class="flex justify-between">
+                        <span>Engineering (${(inputs.engineeringPct*100)}%):</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.engineeringCost)}</span>
+                    </div>
+                    ` : ''}
+                    ${cloudResult.licenseCost > 0 ? `
+                    <div class="flex justify-between">
+                        <span>Inference Server (${serverInfo.name}):</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.licenseCost)}</span>
+                    </div>
+                    ` : ''}
+                    ${cloudResult.monitoringCost > 0 ? `
+                    <div class="flex justify-between">
+                        <span>Monitoring:</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.monitoringCost)}</span>
+                    </div>
+                    ` : ''}
+                    ${cloudResult.complianceCost > 0 ? `
+                    <div class="flex justify-between">
+                        <span>HIPAA/SOC2:</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.complianceCost)}</span>
+                    </div>
+                    ` : ''}
+                    <div class="flex justify-between">
+                        <span>Infrastructure:</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.infraCost)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Storage (${cloudResult.storageGB.toFixed(1)}GB):</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.storageCost)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Egress:</span>
+                        <span class="text-gray-100">${formatCurrency(cloudResult.egressCost)}</span>
+                    </div>
+                    <div class="border-t border-gray-300 pt-1 mt-2">
+                        <div class="flex justify-between font-medium">
+                            <span>Total Monthly Cost:</span>
+                            <span class="text-red-300">${formatCurrency(cloudResult.total)}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.getElementById('cloudBreakdown').innerHTML = breakdown;
+    }
+
+    function downloadBreakdown() {
+        if (!globalBreakdownData) {
+            alert('No data to download. Please calculate results first.');
+            return;
+        }
+
+        const { inputs, results } = globalBreakdownData;
+        let csvContent = 'AI Inference Cost Calculator - Detailed Breakdown\n\n';
+
+        // Add summary information
+        csvContent += 'Configuration Summary\n';
+        csvContent += `Analysis Period,${inputs.timePeriod} months\n`;
+        csvContent += `Daily Requests (Starting),${inputs.dailyRequests.toLocaleString()}\n`;
+        csvContent += `Input Tokens per Request,${inputs.inputTokens}\n`;
+        csvContent += `Output Tokens per Request,${inputs.outputTokens}\n`;
+        csvContent += `Monthly Growth Rate,${inputs.growthRate}%\n\n`;
+
+        const g = 1 + (inputs.growthRate / 100);
+        const timePeriod = inputs.timePeriod || 36;
+
+        // Add monthly data for each enabled option
+        Object.entries(results).forEach(([type, result]) => {
+            if (!result.supported && type === 'rawgpu') return;
+
+            const names = { saas: 'SaaS APIs', managed: 'Managed Models', rawgpu: 'Raw GPUs' };
+            csvContent += `${names[type]} - Monthly Breakdown\n`;
+            csvContent += 'Month,Requests,Input Cost,Output Cost,Total Cost,Cumulative Cost\n';
+
+            let cumulative = 0;
+
+            if (type === 'saas') {
+                const model = PRICING_DB.saas[inputs.saasModel];
+                for (let i = 0; i < timePeriod; i++) {
+                    const monthlyRequests = Math.round(inputs.dailyRequests * 30 * Math.pow(g, i));
+                    const inputTokens = monthlyRequests * inputs.inputTokens;
+                    const outputTokens = monthlyRequests * inputs.outputTokens;
+                    const inputCost = (inputTokens / 1e6) * model.input;
+                    const outputCost = (outputTokens / 1e6) * model.output;
+                    const monthlyCost = inputCost + outputCost;
+                    cumulative += monthlyCost;
+
+                    csvContent += `${i + 1},${monthlyRequests},${inputCost.toFixed(2)},${outputCost.toFixed(2)},${monthlyCost.toFixed(2)},${cumulative.toFixed(2)}\n`;
+                }
+            } else if (type === 'managed') {
+                const model = PRICING_DB.managed[inputs.managedModel];
+                for (let i = 0; i < timePeriod; i++) {
+                    const monthlyRequests = Math.round(inputs.dailyRequests * 30 * Math.pow(g, i));
+                    const inputTokens = monthlyRequests * inputs.inputTokens;
+                    const outputTokens = monthlyRequests * inputs.outputTokens;
+                    const inputCost = (inputTokens / 1e6) * model.input;
+                    const outputCost = (outputTokens / 1e6) * model.output;
+                    const monthlyCost = inputCost + outputCost;
+                    cumulative += monthlyCost;
+
+                    csvContent += `${i + 1},${monthlyRequests},${inputCost.toFixed(2)},${outputCost.toFixed(2)},${monthlyCost.toFixed(2)},${cumulative.toFixed(2)}\n`;
+                }
+            } else if (type === 'rawgpu' && result.supported) {
+                const fixedCosts = result.gpuCost + result.engineeringCost + result.licenseCost +
+                                 result.monitoringCost + result.complianceCost + result.infraCost + result.storageCost;
+
+                csvContent = csvContent.replace('Input Cost,Output Cost', 'Fixed Costs,Egress Cost');
+
+                for (let i = 0; i < timePeriod; i++) {
+                    const monthlyRequests = Math.round(inputs.dailyRequests * 30 * Math.pow(g, i));
+                    const monthlyOutputTokens = monthlyRequests * inputs.outputTokens;
+                    const egressGB = (monthlyOutputTokens * 4) / (1024 * 1024 * 1024);
+                    const egressCost = egressGB * 0.08;
+                    const monthlyCost = fixedCosts + egressCost;
+                    cumulative += monthlyCost;
+
+                    csvContent += `${i + 1},${monthlyRequests},${fixedCosts.toFixed(2)},${egressCost.toFixed(2)},${monthlyCost.toFixed(2)},${cumulative.toFixed(2)}\n`;
+                }
+            }
+            csvContent += '\n';
+        });
+
+        // Add comparison summary
+        const validResults = Object.entries(results).filter(([type, result]) => {
+            return result.supported && (result.cost !== undefined || result.total !== undefined);
+        });
+
+        if (validResults.length > 1) {
+            csvContent += 'Cost Comparison Summary (Month 1)\n';
+            csvContent += 'Option,Monthly Cost,Annual Cost\n';
+
+            validResults.forEach(([type, result]) => {
+                const names = { saas: 'SaaS APIs', managed: 'Managed Models', rawgpu: 'Raw GPUs' };
+                const monthlyCost = result.cost !== undefined ? result.cost : result.total;
+                const annualCost = monthlyCost * 12;
+                csvContent += `${names[type]},${monthlyCost.toFixed(2)},${annualCost.toFixed(2)}\n`;
+            });
+        }
+
+        // Download the file
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `ai-inference-cost-analysis-${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function startOver() {
+        currentStep = 1;
+        selectedScenario = null;
+
+        // Reset all step indicators
+        for (let i = 1; i <= 5; i++) {
+            updateStepIndicator(i, '');
+        }
+        updateStepIndicator(1, 'active');
+
+        // Reset form
+        document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+        document.getElementById('step2Next').disabled = true;
+
+        showStep(1);
+    }
+
+    // Event listeners are now set via onchange attributes in dynamically created HTML
+
+    // Initialize the calculator when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        // Populate all dropdowns
+        populateDropdowns();
+
+        // Update growth display (handled by event listener)
+
+        // Parse URL parameters if present (function not implemented yet)
+
+        // Initial model price update
+        updateModelPrices();
+        updateGpuInfo();
+
+        console.log('AI Inference Cost Calculator initialized');
+    });
+    </script>
+
+    <!-- SEO Footer Content -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12">
+        <div class="max-w-4xl mx-auto px-4">
+
+            <!-- SEO Content Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 text-xs text-gray-600">
+
+                <!-- Popular AI Providers -->
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-2">Popular AI Providers</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="hover:text-red-600">OpenAI GPT-4 Pricing</a></li>
+                        <li><a href="#" class="hover:text-red-600">Anthropic Claude Cost</a></li>
+                        <li><a href="#" class="hover:text-red-600">AWS Bedrock Pricing</a></li>
+                        <li><a href="#" class="hover:text-red-600">Google Vertex AI Cost</a></li>
+                        <li><a href="#" class="hover:text-red-600">Azure OpenAI Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- GPU Providers -->
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-2">GPU Hosting Options</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="hover:text-red-600">AWS EC2 GPU Pricing</a></li>
+                        <li><a href="#" class="hover:text-red-600">Google Cloud GPU Cost</a></li>
+                        <li><a href="#" class="hover:text-red-600">Lambda Labs GPU Pricing</a></li>
+                        <li><a href="#" class="hover:text-red-600">RunPod Cost Calculator</a></li>
+                        <li><a href="#" class="hover:text-red-600">CoreWeave GPU Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Use Cases -->
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-2">Use Cases</h3>
+                    <ul class="space-y-1">
+                        <li><a href="#" class="hover:text-red-600">Chatbot Cost Calculator</a></li>
+                        <li><a href="#" class="hover:text-red-600">LLM Deployment Pricing</a></li>
+                        <li><a href="#" class="hover:text-red-600">AI API Cost Comparison</a></li>
+                        <li><a href="#" class="hover:text-red-600">Machine Learning Inference</a></li>
+                        <li><a href="#" class="hover:text-red-600">Enterprise AI Costs</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Description for SEO -->
+            <div class="border-t border-gray-200 pt-6 mb-6">
+                <h2 class="font-semibold text-gray-800 mb-3 text-sm">About AI Inference Cost Calculator</h2>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    Our free AI inference cost calculator helps developers, startups, and enterprises compare pricing across major AI service providers.
+                    Calculate costs for OpenAI GPT-4, Anthropic Claude, AWS Bedrock, Google Vertex AI, Azure OpenAI, and self-hosted GPU deployments.
+                    Features include multi-year projections, HIPAA compliance filtering, token-based pricing, growth modeling, and comprehensive cost breakdowns
+                    for engineering overhead, monitoring, and operational expenses. Updated with 2026 pricing data from all major providers.
+                </p>
+            </div>
+
+            <!-- Feedback -->
+            <div class="border-t border-gray-200 pt-4 text-center">
+                <p class="text-xs text-gray-600 mb-3">
+                    <strong>Feedback:</strong> Have suggestions or found an issue? Send us an email at
+                    <a href="mailto:sushild76@gmail.com" class="text-red-600 hover:text-red-700 underline">sushild76@gmail.com</a>
+                </p>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="border-t border-gray-200 pt-4 text-center">
+                <p class="text-xs text-gray-600">
+                    <strong>Disclaimer:</strong> Pricing information updated February 19, 2026, based on publicly available market data and is provided for estimation purposes only.
+                    Actual costs may vary based on provider pricing changes, regional differences, usage patterns, and specific contract terms.
+                    This calculator is not affiliated with any cloud provider or AI service mentioned.
+                    <br><br>
+                    <span class="text-gray-500">© 2026 AI Cost Calculator - Free AI Inference Pricing Tool</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

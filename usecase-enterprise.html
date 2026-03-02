@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Primary Meta Tags -->
+    <title>AI Cost Calculator for Enterprise Scale - Large Volume AI Pricing | 2026</title>
+    <meta name="description" content="Enterprise AI cost analysis for high-volume deployments. Compare costs for millions of daily requests across AWS Bedrock, Azure OpenAI, and self-hosted GPU solutions.">
+    <meta name="keywords" content="enterprise AI cost, large scale AI pricing, millions of requests AI, AWS Bedrock enterprise, Azure OpenAI enterprise, self-hosted enterprise AI">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Cost Calculator for Enterprise Scale">
+    <meta property="og:description" content="Enterprise AI cost analysis for high-volume deployments with millions of daily requests.">
+    <meta property="og:url" content="https://inference-calc.web.app/usecase-enterprise.html">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen">
+
+    <!-- Header -->
+    <header class="border-b border-red-200 bg-gradient-to-r from-red-600 to-red-700 shadow-lg">
+        <div class="max-w-4xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-bold text-white">
+                        <a href="index.html" class="hover:text-red-100">AI Inference Cost Calculator</a>
+                    </h1>
+                    <p class="text-xs text-red-100 mt-1">Enterprise Scale Use Case</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors">← Calculator</a>
+                    <a href="help.html" class="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white rounded border border-white/30 transition-colors">Help</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <div class="text-6xl mb-4">🏢</div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">Enterprise Scale AI Costs</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Running AI at enterprise scale? Discover when to use managed services vs. self-hosted infrastructure for millions of daily requests.
+            </p>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300 rounded-lg p-6 text-center">
+                <div class="text-2xl font-bold text-blue-700">100K-10M+</div>
+                <div class="text-sm text-blue-600">Daily requests</div>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-300 rounded-lg p-6 text-center">
+                <div class="text-2xl font-bold text-green-700">$5K-100K+/mo</div>
+                <div class="text-sm text-green-600">Typical budget</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-300 rounded-lg p-6 text-center">
+                <div class="text-2xl font-bold text-purple-700">99.9%</div>
+                <div class="text-sm text-purple-600">SLA requirement</div>
+            </div>
+        </div>
+
+        <!-- Decision Matrix -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Choose Your Enterprise Strategy</h2>
+
+            <!-- Up to 1M requests -->
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-300 rounded-lg p-8 mb-6">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">📊</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-orange-700 mb-4">Up to 1M Daily Requests: Managed Models</h3>
+                        <p class="text-gray-700 mb-4">
+                            For enterprises processing under 1M daily requests, managed cloud services offer the best balance of cost, reliability, and simplicity.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-lg border border-orange-200">
+                                <h4 class="font-semibold text-orange-600 mb-2">✅ Recommended</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• <strong>AWS Bedrock</strong> - Enterprise features</li>
+                                    <li>• <strong>Azure OpenAI</strong> - Enterprise compliance</li>
+                                    <li>• <strong>Google Vertex AI</strong> - Auto-scaling</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-orange-200">
+                                <h4 class="font-semibold text-orange-600 mb-2">💰 Estimated Cost</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• 100K requests: $3-5K/month</li>
+                                    <li>• 500K requests: $15-25K/month</li>
+                                    <li>• 1M requests: $30-50K/month</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Over 1M requests -->
+            <div class="bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-300 rounded-lg p-8 mb-6">
+                <div class="flex items-start gap-4">
+                    <div class="text-4xl">🚀</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-red-700 mb-4">1M+ Daily Requests: Consider Self-Hosted</h3>
+                        <p class="text-gray-700 mb-4">
+                            At ultra-high volumes, self-hosted GPU infrastructure becomes cost-competitive and offers maximum control and customization.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-lg border border-red-200">
+                                <h4 class="font-semibold text-red-600 mb-2">🎯 Sweet Spot</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• <strong>Break-even:</strong> ~2M requests/day</li>
+                                    <li>• <strong>ROI:</strong> 30-50% savings vs SaaS</li>
+                                    <li>• <strong>Custom models:</strong> Full control</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-red-200">
+                                <h4 class="font-semibold text-red-600 mb-2">⚠️ Requirements</h4>
+                                <ul class="text-sm space-y-1">
+                                    <li>• Dedicated ML/DevOps team</li>
+                                    <li>• 6-month minimum commitment</li>
+                                    <li>• $100K+ monthly budget</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Cost Analysis -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Enterprise Cost Analysis (1M Daily Requests)</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Managed Models -->
+                <div class="bg-orange-50 border-2 border-orange-300 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🟠</span>
+                        <h3 class="text-lg font-bold text-orange-700">Managed Models</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm">Inference Cost</span>
+                            <span class="font-semibold text-orange-700">$35,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Management</span>
+                            <span class="font-semibold text-orange-700">$5,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Monitoring</span>
+                            <span class="font-semibold text-orange-700">$2,000/mo</span>
+                        </div>
+                        <hr class="border-orange-200">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span class="text-orange-700">$42,000/mo</span>
+                        </div>
+                        <div class="text-xs space-y-1 mt-3">
+                            <div class="text-green-600">✅ Immediate deployment</div>
+                            <div class="text-green-600">✅ Enterprise SLAs</div>
+                            <div class="text-green-600">✅ Automatic scaling</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Self-Hosted -->
+                <div class="bg-red-50 border-2 border-red-300 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🔴</span>
+                        <h3 class="text-lg font-bold text-red-700">Self-Hosted GPU</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm">GPU Infrastructure</span>
+                            <span class="font-semibold text-red-700">$18,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Engineering Team</span>
+                            <span class="font-semibold text-red-700">$15,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Infrastructure</span>
+                            <span class="font-semibold text-red-700">$3,000/mo</span>
+                        </div>
+                        <hr class="border-red-200">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span class="text-red-700">$36,000/mo</span>
+                        </div>
+                        <div class="text-xs space-y-1 mt-3">
+                            <div class="text-green-600">✅ Lower per-request cost</div>
+                            <div class="text-yellow-600">⚠️ 3-6 month setup</div>
+                            <div class="text-yellow-600">⚠️ Team required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hybrid -->
+                <div class="bg-blue-50 border-2 border-blue-300 rounded-lg p-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🔵</span>
+                        <h3 class="text-lg font-bold text-blue-700">Hybrid Approach</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-sm">Self-hosted (80%)</span>
+                            <span class="font-semibold text-blue-700">$29,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Managed (20%)</span>
+                            <span class="font-semibold text-blue-700">$8,000/mo</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-sm">Overhead</span>
+                            <span class="font-semibold text-blue-700">$1,000/mo</span>
+                        </div>
+                        <hr class="border-blue-200">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span class="text-blue-700">$38,000/mo</span>
+                        </div>
+                        <div class="text-xs space-y-1 mt-3">
+                            <div class="text-green-600">✅ Best of both worlds</div>
+                            <div class="text-green-600">✅ Burst capacity</div>
+                            <div class="text-green-600">✅ Risk mitigation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Timeline -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Implementation Timeline</h2>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center font-bold text-green-600">1</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 mb-2">Weeks 1-2: Start with Managed Models</h3>
+                        <p class="text-gray-700">Deploy on AWS Bedrock or Azure OpenAI to handle immediate needs while evaluating long-term strategy.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">2</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 mb-2">Months 1-3: Plan Self-Hosted Infrastructure</h3>
+                        <p class="text-gray-700">If volume justifies it, begin planning GPU infrastructure, hiring ML engineers, and setting up CI/CD.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center font-bold text-purple-600">3</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 mb-2">Months 3-6: Gradual Migration</h3>
+                        <p class="text-gray-700">Implement hybrid approach, gradually shifting traffic to self-hosted while maintaining managed fallback.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enterprise Considerations -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Enterprise Decision Factors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                    <h3 class="font-semibold text-gray-900 mb-4">Choose Managed Models If:</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span>
+                            <span>Under 1M daily requests</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span>
+                            <span>Need fast deployment (weeks)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span>
+                            <span>Limited ML engineering team</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span>
+                            <span>Compliance requirements (SOC2, HIPAA)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span>
+                            <span>Variable/unpredictable traffic</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                    <h3 class="font-semibold text-gray-900 mb-4">Choose Self-Hosted If:</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="text-blue-500">✓</span>
+                            <span>2M+ daily requests consistently</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-blue-500">✓</span>
+                            <span>Need custom model fine-tuning</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-blue-500">✓</span>
+                            <span>Strong ML/DevOps team</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-blue-500">✓</span>
+                            <span>Data sovereignty requirements</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-blue-500">✓</span>
+                            <span>Predictable, steady traffic</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Section -->
+        <div class="bg-gradient-to-br from-red-600 to-red-700 rounded-lg p-8 text-white text-center">
+            <h2 class="text-2xl font-bold mb-4">Calculate Your Enterprise AI Costs</h2>
+            <p class="mb-6 text-red-100">
+                Get precise cost projections for your enterprise volume and requirements.
+            </p>
+            <div class="space-x-4">
+                <a href="index.html?preset=enterprise" class="inline-block px-6 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-red-50 transition-colors">
+                    Calculate Enterprise Costs
+                </a>
+                <a href="usecase-healthcare.html" class="inline-block px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+                    Healthcare Use Case →
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 py-6 text-center text-xs text-gray-600">
+        <div class="max-w-4xl mx-auto px-4">
+            <p class="mb-2">
+                For feedback or questions, email us at
+                <a href="mailto:sushild76@gmail.com" class="text-red-600 hover:text-red-700 underline">sushild76@gmail.com</a>
+            </p>
+            <p>© 2026 AI Cost Calculator - <a href="index.html" class="hover:text-red-600">Calculate Your AI Costs</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>

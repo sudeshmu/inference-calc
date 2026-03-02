@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Calculator body -->
+  <rect x="64" y="64" width="384" height="384" rx="32" ry="32" fill="#dc2626" stroke="#b91c1c" stroke-width="16"/>
+
+  <!-- Display screen -->
+  <rect x="96" y="96" width="320" height="96" rx="16" ry="16" fill="#1f2937"/>
+
+  <!-- Display text -->
+  <text x="256" y="168" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="48" font-weight="bold">AI CALC</text>
+
+  <!-- Calculator buttons -->
+  <!-- Row 1 -->
+  <rect x="96" y="224" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="176" y="224" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="256" y="224" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="336" y="224" width="80" height="48" rx="8" fill="#ef4444" stroke="#dc2626" stroke-width="8"/>
+
+  <!-- Row 2 -->
+  <rect x="96" y="288" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="176" y="288" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="256" y="288" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="336" y="288" width="80" height="48" rx="8" fill="#ef4444" stroke="#dc2626" stroke-width="8"/>
+
+  <!-- Row 3 -->
+  <rect x="96" y="352" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="176" y="352" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="256" y="352" width="64" height="48" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="336" y="352" width="80" height="48" rx="8" fill="#ef4444" stroke="#dc2626" stroke-width="8"/>
+
+  <!-- Bottom row -->
+  <rect x="96" y="416" width="144" height="32" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="256" y="416" width="64" height="32" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="8"/>
+  <rect x="336" y="416" width="80" height="32" rx="8" fill="#10b981" stroke="#059669" stroke-width="8"/>
+
+  <!-- Button symbols -->
+  <circle cx="128" cy="248" r="4.8" fill="#6b7280"/>
+  <circle cx="208" cy="248" r="4.8" fill="#6b7280"/>
+  <circle cx="288" cy="248" r="4.8" fill="#6b7280"/>
+  <text x="376" y="256" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="24" font-weight="bold">$</text>
+</svg>
